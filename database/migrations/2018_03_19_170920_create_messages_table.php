@@ -18,13 +18,13 @@ class CreateMessagesTable extends Migration
             $table->integer('from_user_id')->index()->unsigned();
             $table->integer('to_user_id')->index()->unsigned();
             $table->text('content');
-            $table->timestamp('read_time')->nullable($value = true);                     
+            $table->timestamp('read_time')->nullable();                     
             $table->timestamps();
             $table->foreign('from_user_id')
                   ->references('id')->on('users')
                   ->onDelete('cascade');
             $table->foreign('to_user_id')
-                  ->references('id')->on('posts')
+                  ->references('id')->on('users')
                   ->onDelete('cascade');
         });
     }
