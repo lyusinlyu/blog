@@ -1,5 +1,10 @@
 <?php
-
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Like;
+use App\Models\Message;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +18,7 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/test', function () {
+    dd(111);
 });
