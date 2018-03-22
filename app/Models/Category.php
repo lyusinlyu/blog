@@ -10,4 +10,11 @@ class Category extends Model
         'user_id', 'title'
     ];
     protected $table = 'categories';
+
+   
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'foreign_key');
+    }
 }
