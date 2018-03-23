@@ -7,7 +7,11 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Message;
 
-/*
+
+
+function dbDataFill() {
+
+    /*
 1) Create a user 1
 2) Create 3 categories that belong to the user 1
 3) Create 2 posts for each category (posts also belong to the user 1)
@@ -16,9 +20,8 @@ use App\Models\Message;
 6) Write a message from user 2 to user 1
  */
 
-function db_fill_by_tyom() {
-     //User input data
-     $userInputs = [
+    //User input data
+    $user_inputs = [
         'user_1' => [
             'name' => 'lus',
             'surname' => 'Hovhannisian',
@@ -37,118 +40,96 @@ function db_fill_by_tyom() {
             'gender' => 'male',
             'date_of_birth' => '1994-03-15 00:05:00'
         ]
-    ];
+    ];   
 
     //Creating a User
-    $user1 = User::create($userInputs['user_1']);
-    $user_id = DB::connection()->getPdo()->lastInsertId();
+    $user1 = User::create($user_inputs['user_1']);
+    $user1_id = $user1->id;    
 
+    $category_inputs = [
+       1 => ['user_id' => $user1_id, 'title' => 'Category 1'],
+       2 => ['user_id' => $user1_id, 'title' => 'Category 2'],
+       3 => ['user_id' => $user1_id, 'title' => 'Category 3']
+    ];
+    //Creating Categories with insert()
 
-    //Creating Categories
-    $user1_category_1 = Category::create(
-        ['user_id' => $user_id, 'title' => 'Category 1']
-    );
-    $category_1_id = DB::connection()->getPdo()->lastInsertId();
-    
+    // $ids = [];
 
-    $user1_category_2 = Category::create(
-        ['user_id' => $user_id, 'title' => 'Category 2']
-    );
-    $category_2_id = DB::connection()->getPdo()->lastInsertId();
-    
+    // foreach($category_inputs as $category_input)
+    // {
+    //     $ids[] = DB::table('categories')->insertGetId($category_input);
+    // }
+    // $cat1_id = $ids[0];
+    // $cat2_id = $ids[1];
+    // $cat3_id = $ids[2];  
+   
 
-    $user1_category_3 = Category::create(
-        ['user_id' => $user_id, 'title' => 'Category 3']
-    );
-    $category_3_id = DB::connection()->getPdo()->lastInsertId();
+    //Creating Categories with create()
+    $u1_cat1 = Category::create($category_inputs[1]);
+    $cat1_id = $u1_cat1 -> id;    
+
+    $u1_cat2 = Category::create($category_inputs[2]);
+    $cat2_id = $u1_cat2 -> id;    
+
+    $u1_cat3 = Category::create($category_inputs[3]);
+    $cat3_id = $u1_cat3 -> id;
     
     //Creating Posts
     //Category_1 Posts
-    $user_1_category_1_post_1 = Post::create(
-        [
-            'user_id' => $user_id, 
-            'category_id' => $category_1_id, 
-            'title' => 'Post_1 Title', 
-            'content' => 'Post_1 Content'
-        ]
-        );
-    $user_1_category_1_post_1_id = DB::connection()->getPdo()->lastInsertId();
+    $post_inputs = [
+        1 => ['user_id' => $user1_id, 'category_id' => $cat1_id, 'title' => 'Post_1 Title', 'content' => 'Post_1 Content'],
+        2 => ['user_id' => $user1_id, 'category_id' => $cat1_id, 'title' => 'Post_2 Title', 'content' => 'Post_2 Content'],
+        3 => ['user_id' => $user1_id, 'category_id' => $cat2_id, 'title' => 'Post_1 Title', 'content' => 'Post_1 Content'],
+        4 => ['user_id' => $user1_id, 'category_id' => $cat2_id, 'title' => 'Post_2 Title', 'content' => 'Post_2 Content'],
+        5 => ['user_id' => $user1_id, 'category_id' => $cat3_id, 'title' => 'Post_1 Title', 'content' => 'Post_1 Content'],
+        6 => ['user_id' => $user1_id, 'category_id' => $cat3_id, 'title' => 'Post_2 Title', 'content' => 'Post_2 Content']
 
-    $user_1_category_1_post_2 = Post::create(
-        [
-            'user_id' => $user_id, 
-            'category_id' => $category_1_id, 
-            'title' => 'Post_2 Title', 
-            'content' => 'Post_2 Content'
-        ]
-        );
-    $user_1_category_1_post_2_id = DB::connection()->getPdo()->lastInsertId();
+    ];
+    $cat1_post1 = Post::create($post_inputs[1]);
+    $cat1_post1_id = $cat1_post1->id;
+
+    $cat1_post2 = Post::create($post_inputs[2]);
+    $cat1_post2_id = $cat1_post2->id;
+
     //Category_2 Posts
-    $user_1_category_2_post_1 = Post::create(
-        [
-            'user_id' => $user_id, 
-            'category_id' => $category_2_id, 
-            'title' => 'Post_1 Title', 
-            'content' => 'Post_1 Content'
-        ]
-        );
-    $user_1_category_2_post_1_id = DB::connection()->getPdo()->lastInsertId();
+    $cat2_post1 = Post::create($post_inputs[3]);
+    $cat2_post1_id = $cat2_post1->id;
 
-    $user_1_category_2_post_2 = Post::create(
-        [
-            'user_id' => $user_id, 
-            'category_id' => $category_2_id, 
-            'title' => 'Post_2 Title', 
-            'content' => 'Post_2 Content'
-        ]
-        );
-    $user_1_category_2_post_2_id = DB::connection()->getPdo()->lastInsertId();
+    $cat2_post2 = Post::create($post_inputs[4]);
+    $cat2_post2_id = $cat2_post2->id;
     
     //Category_3 Posts
-    $user_1_category_3_post_1 = Post::create(
-        [
-            'user_id' => $user_id, 
-            'category_id' => $category_3_id, 
-            'title' => 'Post_1 Title', 
-            'content' => 'Post_1 Content'
-        ]
-        );
-    $user_1_category_3_post_1_id = DB::connection()->getPdo()->lastInsertId();
+    $cat3_post1 = Post::create($post_inputs[5]);
+    $cat3_post1_id = $cat3_post1->id;
 
-    $user_1_category_3_post_2 = Post::create(
-        [
-            'user_id' => $user_id, 
-            'category_id' => $category_3_id, 
-            'title' => 'Post_2 Title', 
-            'content' => 'Post_2 Content'
-        ]
-        );
-    $user_1_category_3_post_2_id = DB::connection()->getPdo()->lastInsertId();
+    $cat3_post2 = Post::create($post_inputs[6]);
+    $cat3_post2_id = $cat3_post2->id;
 
 
     //Creating User_2
-    $user2 = User::create($userInputs['user_2']);
-    $user_2_id = DB::connection()->getPdo()->lastInsertId();
+    $user2 = User::create($user_inputs['user_2']);
+    $user2_id = $user2->id;
 
     //Likes
-    $user_2_like_category_1_post_1 = Like::create(['user_id' => $user_id, 'post_id' => $user_1_category_1_post_1_id]);
-    $user_2_like_category_1_post_2 = Like::create(['user_id' => $user_id, 'post_id' => $user_1_category_1_post_2_id]);
-
-    $user_2_like_category_2_post_1 = Like::create(['user_id' => $user_id, 'post_id' => $user_1_category_2_post_1_id]);
-    $user_2_like_category_2_post_2 = Like::create(['user_id' => $user_id, 'post_id' => $user_1_category_2_post_2_id]);
-
-    $user_2_like_category_3_post_1 = Like::create(['user_id' => $user_id, 'post_id' => $user_1_category_3_post_1_id]);
-    $user_2_like_category_3_post_2 = Like::create(['user_id' => $user_id, 'post_id' => $user_1_category_3_post_2_id]);
+    $likes = [
+        ['user_id' => $user2_id, 'post_id' => $cat1_post1_id],
+        ['user_id' => $user2_id, 'post_id' => $cat1_post2_id],
+        ['user_id' => $user2_id, 'post_id' => $cat2_post1_id],
+        ['user_id' => $user2_id, 'post_id' => $cat2_post2_id],
+        ['user_id' => $user2_id, 'post_id' => $cat3_post1_id],
+        ['user_id' => $user2_id, 'post_id' => $cat3_post2_id]
+    ];
+   
+    DB::table('likes')->insert($likes);
     
 
-    //Message from user_2 to user_1
-
-    $user_2_msg_to_user_1 = Message::create(
-        [
-        'from_user_id' => $user_2_id, 
-        'to_user_id' => $user_id, 
+    //Message 
+    $msg =  [
+        'from_user_id' => $user2_id, 
+        'to_user_id' => $user1_id, 
         'content' => 'Lus baylus'
-    ]);
+    ];
+    Message::create($msg);
 }
 
 
@@ -167,5 +148,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
-   db_fill_by_tyom();
+    dbDataFill();
 });
