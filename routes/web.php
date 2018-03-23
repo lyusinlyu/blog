@@ -11,14 +11,14 @@ use App\Models\Message;
 
 function dbDataFill() {
 
-    /*
+/*
 1) Create a user 1
 2) Create 3 categories that belong to the user 1
 3) Create 2 posts for each category (posts also belong to the user 1)
 4) Create user 2
 5) Set likes on every post from user 2
 6) Write a message from user 2 to user 1
- */
+*/
 
     //User input data
     $user_inputs = [
@@ -53,14 +53,13 @@ function dbDataFill() {
     ];
     //Creating Categories 
 
-    foreach($category_inputs as $category_input)
-    {
+    foreach($category_inputs as $category_input) {
         $category = Category::create($category_input);
         $ids[] = $category->id;
     }
    
     //Creating Posts
-    
+
     $post_inputs = [
         ['user_id' => $user1_id, 'category_id' => $ids[0], 'title' => 'Post_1 Title', 'content' => 'Post_1 Content'],
         ['user_id' => $user1_id, 'category_id' => $ids[0], 'title' => 'Post_2 Title', 'content' => 'Post_2 Content'],
@@ -86,7 +85,6 @@ function dbDataFill() {
         $likes[] = ['user_id' => $user2_id, 'post_id' => $postIds[$i]];
     }
     Like::insert($likes);
-    
 
     //Message 
     $msg =  [
@@ -96,6 +94,7 @@ function dbDataFill() {
     ];
     Message::create($msg);
 }
+
 
 
 /*
