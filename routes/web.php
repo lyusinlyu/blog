@@ -188,11 +188,12 @@ function dbDataFill2() {
 
 
     function dbDataFillShow() {
-        $email_1 = 'lusine@gmail.com';
-
-        if (isset($_GET['email'])) {
-            $email_1 = $_GET['email'];
-        } 
+        
+        if (!isset($_GET['email1']) && !isset($_GET['email2'])) {
+            dd('please enter your email');
+        } elseif (User::where( 'email', $_GET['email1'])->exists() && User::where('email', $_GET['email2'])->exists()) {
+            dd('please enter another email address. The address is already used.');
+        }
 
         $usersInputs = [
             [
@@ -200,7 +201,7 @@ function dbDataFill2() {
             'surname' => 'Hovhannisian',
             'nickname' => 'LLL',
             'password' => 'cheshireCat',
-            'email' => $email_1,
+            'email' => $_GET['email1'],
             'gender' => 'female',
             'date_of_birth' => '1990-12-26 16:05:00'
         ],
@@ -209,7 +210,7 @@ function dbDataFill2() {
             'surname' => 'Hovhannisian',
             'nickname' => 'LLL',
             'password' => 'likCat',
-            'email' => 'likCat@gmail.com',
+            'email' => $_GET['email2'],
             'gender' => 'female',
             'date_of_birth' => '1990-12-26 16:05:00'
             ]
