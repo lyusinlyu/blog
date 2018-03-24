@@ -188,63 +188,67 @@ function dbDataFill2() {
 
 
     function dbDataFillShow() {
+        $email_1 = 'lusine@gmail.com';
+
         if (isset($_GET['email'])) {
-            $userData = User::where('email', $_GET['email']) -> get();
-        } else {
-            $usersInputs = [
-                [
-                'name' => 'lus',
-                'surname' => 'Hovhannisian',
-                'nickname' => 'LLL',
-                'password' => 'cheshireCat',
-                'email' => 'lusine@gmail.com',
-                'gender' => 'female',
-                'date_of_birth' => '1990-12-26 16:05:00'
-            ],
-                [
-                'name' => 'lik',
-                'surname' => 'Hovhannisian',
-                'nickname' => 'LLL',
-                'password' => 'likCat',
-                'email' => 'likCat@gmail.com',
-                'gender' => 'female',
-                'date_of_birth' => '1990-12-26 16:05:00'
-                ]
-            ];
-            foreach ($usersInputs as $userInput) {
-                $user = User::create($userInput);
-                $userIds[] = $user->id;
-            }
-            
-            $categoryInput = [
-                'user_id' => $userIds[0], 'title' => 'Category Title'
-            ];
-            $category = Category::create($categoryInput);
-            $categoryId = $category -> id;
-            $postInput = [
-                'user_id' => $userIds[0], 'category_id' => $categoryId, 'title' => 'Bloody Mary', 'content' => 'content'
-            ];
-            $post = Post::create($postInput);
-            $postId = $post -> id;
-            $commentInput = [
-                'user_id' => $userIds[0], 'post_id' => $postId, 'content' => 'Hey'
-            ];
-            $comment = Comment::create($commentInput);
-            $commentId = $comment -> id;
-            $like = ['user_id' => $userIds[0], 'post_id' => $postId];
-            Like::insert($like);
-            $msg =  ['from_user_id' => $userIds[0], 'to_user_id' => $userIds[1], 'content' => 'yaxqqqqq'];
-            Message::create($msg);
-    
-            $userData = [
-                'user' =>  User::where('id', $userIds[0])->get(),
-                'category' => Category::where('user_id', $userIds[0])->get(),
-                'post' => Post::where('user_id', $userIds[0])-> where('category_id', $categoryId)->get(),
-                'like' => Like::where('user_id', $userIds[0])-> where('post_id', $postId)->get(),
-                'comment' => Comment::where('user_id', $userIds[0])-> where('post_id', $postId)->get(),
-                'message' => Message::where('from_user_id', $userIds[0])->get()
-            ];
-        }     
+            $email_1 = $_GET['email'];
+        } 
+
+        $usersInputs = [
+            [
+            'name' => 'lus',
+            'surname' => 'Hovhannisian',
+            'nickname' => 'LLL',
+            'password' => 'cheshireCat',
+            'email' => $email_1,
+            'gender' => 'female',
+            'date_of_birth' => '1990-12-26 16:05:00'
+        ],
+            [
+            'name' => 'lik',
+            'surname' => 'Hovhannisian',
+            'nickname' => 'LLL',
+            'password' => 'likCat',
+            'email' => 'likCat@gmail.com',
+            'gender' => 'female',
+            'date_of_birth' => '1990-12-26 16:05:00'
+            ]
+        ];
+        foreach ($usersInputs as $userInput) {
+            $user = User::create($userInput);
+            $userIds[] = $user->id;
+        }
+        
+        $categoryInput = [
+            'user_id' => $userIds[0], 'title' => 'Category Title'
+        ];
+        $category = Category::create($categoryInput);
+        $categoryId = $category -> id;
+        $postInput = [
+            'user_id' => $userIds[0], 'category_id' => $categoryId, 'title' => 'Bloody Mary', 'content' => 'content'
+        ];
+        $post = Post::create($postInput);
+        $postId = $post -> id;
+        $commentInput = [
+            'user_id' => $userIds[0], 'post_id' => $postId, 'content' => 'Hey'
+        ];
+        $comment = Comment::create($commentInput);
+        $commentId = $comment -> id;
+        $like = ['user_id' => $userIds[0], 'post_id' => $postId];
+        Like::insert($like);
+        $msg =  ['from_user_id' => $userIds[0], 'to_user_id' => $userIds[1], 'content' => 'yaxqqqqq'];
+        Message::create($msg);
+
+        $userData = [
+            'user' =>  User::where('id', $userIds[0])->get(),
+            'category' => Category::where('user_id', $userIds[0])->get(),
+            'post' => Post::where('user_id', $userIds[0])-> where('category_id', $categoryId)->get(),
+            'like' => Like::where('user_id', $userIds[0])-> where('post_id', $postId)->get(),
+            'comment' => Comment::where('user_id', $userIds[0])-> where('post_id', $postId)->get(),
+            'message' => Message::where('from_user_id', $userIds[0])->get()
+        ];
+        
+       
         dd($userData);
     }
 
