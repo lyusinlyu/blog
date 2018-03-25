@@ -287,7 +287,7 @@ function dbDataFill2() {
 
     function fillData() {
       $relations = ['categories', 'posts', 'comments', 'likes', 'messages'];
-      $users = User::with($relations)->get();
+      $users = User::all();
       foreach ($users as $user) {
         $category = $user->categories()->create(
           ['title' => 'Another Category']
