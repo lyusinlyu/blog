@@ -10,4 +10,14 @@ class Like extends Model
         'user_id', 'post_id'
     ];
     protected $table = 'likes';
+
+    public function user()
+   {
+       return $this->belongsTo('App\Models\User');
+   }
+
+   public function post()
+  {
+      return $this->belongsTo('App\Models\Post');
+  }
 }

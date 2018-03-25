@@ -14,6 +14,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $fillable = [
         'name', 'email', 'surname', 'nickname', 'password', 'email', 'gender', 'date_of_birth'
     ];
@@ -26,4 +27,30 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function categories()
+    {
+        return $this->hasMany('App\Models\Category', 'user_id', 'id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post', 'user_id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment', 'user_id', 'id');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Like', 'user_id', 'id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany('App\Models\Message', 'from_user_id', 'id');
+    }
+
 }

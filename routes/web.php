@@ -40,24 +40,24 @@ function dbDataFill() {
             'gender' => 'male',
             'date_of_birth' => '1994-03-15 00:05:00'
         ]
-    ];   
+    ];
 
     //Creating a User
     $user1 = User::create($user_inputs['user_1']);
-    $user1_id = $user1->id;    
+    $user1_id = $user1->id;
 
     $category_inputs = [
-       1 => ['user_id' => $user1_id, 'title' => 'Category 1'],
+       'input_1' => ['user_id' => $user1_id, 'title' => 'Category 1'],
        2 => ['user_id' => $user1_id, 'title' => 'Category 2'],
        3 => ['user_id' => $user1_id, 'title' => 'Category 3']
     ];
-    //Creating Categories 
+    //Creating Categories
 
     foreach($category_inputs as $category_input) {
         $category = Category::create($category_input);
         $ids[] = $category->id;
     }
-   
+
     //Creating Posts
 
     $post_inputs = [
@@ -74,22 +74,22 @@ function dbDataFill() {
         $post = Post::create($post_inputs[$i]);
         $postIds[] = $post->id;
     }
-    
+
     //Creating User_2
     $user2 = User::create($user_inputs['user_2']);
     $user2_id = $user2->id;
 
     //Likes
-   
+
     for ($i = 0; $i < count($postIds); $i++) {
         $likes[] = ['user_id' => $user2_id, 'post_id' => $postIds[$i]];
     }
     Like::insert($likes);
 
-    //Message 
+    //Message
     $msg =  [
-        'from_user_id' => $user2_id, 
-        'to_user_id' => $user1_id, 
+        'from_user_id' => $user2_id,
+        'to_user_id' => $user1_id,
         'content' => 'Lus baylus'
     ];
     Message::create($msg);
@@ -135,7 +135,7 @@ function dbDataFill2() {
     ];
     foreach ($userInputs as $userInput) {
         $user = User::create($userInput);
-        $usersIds[] = $user -> id;
+        $usersIds[] = $user->id;
     }
     $categoryInputs = [
        1 => ['user_id' => $usersIds[0], 'title' => 'Werevolves'],
@@ -147,7 +147,7 @@ function dbDataFill2() {
     ];
     foreach ($categoryInputs as $categoryInput) {
         $category = Category::create($categoryInput);
-        $categoryIds[] = $category -> id;
+        $categoryIds[] = $category->id;
     }
     $postsInputs = [
         1 => ['user_id' => $usersIds[0], 'category_id' => $categoryIds[0], 'title' => 'Bloody Mary', 'content' => 'content'],
@@ -159,7 +159,7 @@ function dbDataFill2() {
     ];
     foreach ($postsInputs as $postInput) {
         $post = Post::create($postInput);
-        $postsIds[] = $post -> id;
+        $postsIds[] = $post->id;
     }
     $commentsInputs = [
         ['user_id' => $usersIds[0], 'post_id' => $postsIds[2], 'content' => 'Great'],
@@ -170,29 +170,36 @@ function dbDataFill2() {
         ['user_id' => $usersIds[2], 'post_id' => $postsIds[4], 'content' => 'new Post is here'],
         ['user_id' => $usersIds[0], 'post_id' => $postsIds[5], 'content' => 'ok'],
     ];
-    foreach ($commentsInputs as $commentsInput) {
-        Comment::insert($commentsInput);
-        }
+    Comment::insert($commentsInputs);
+
     $likes = [
         ['user_id' => $usersIds[0], 'post_id' => $postsIds[2]],
         ['user_id' => $usersIds[1], 'post_id' => $postsIds[1]],
         ['user_id' => $usersIds[2], 'post_id' => $postsIds[0]],
         ['user_id' => $usersIds[0], 'post_id' => $postsIds[3]],
         ['user_id' => $usersIds[1], 'post_id' => $postsIds[4]],
-        ['user_id' => $usersIds[2], 'post_id' => $postsIds[5]]        
+        ['user_id' => $usersIds[2], 'post_id' => $postsIds[5]]
     ];
-    foreach ($likes as $like) {
-        Like::insert($like);
-        }
+
+    Like::insert($likes);
     }
 
 
     function dbDataFillShow() {
-        
-        if (!isset($_GET['email1']) && !isset($_GET['email2'])) {
+        // $users = User::all()->toArray();
+        // dd($users);
+        if (!isset($_GET['email1'])) {
             dd('please enter your email');
-        } elseif (User::where( 'email', $_GET['email1'])->exists() && User::where('email', $_GET['email2'])->exists()) {
-            dd('please enter another email address. The address is already used.');
+        }
+        if (!isset($_GET['email2'])) {
+            dd('please enter your email2');
+        }
+
+        if (User::where( 'email', $_GET['email1'])->exists()) {
+            dd('please enter another email1 address. The address is already used.');
+        }
+        if (User::where('email', $_GET['email2'])->exists()) {
+            dd('please enter another email2 address. The address is already used.');
         }
 
         $usersInputs = [
@@ -204,7 +211,7 @@ function dbDataFill2() {
             'email' => $_GET['email1'],
             'gender' => 'female',
             'date_of_birth' => '1990-12-26 16:05:00'
-        ],
+            ],
             [
             'name' => 'lik',
             'surname' => 'Hovhannisian',
@@ -215,15 +222,15 @@ function dbDataFill2() {
             'date_of_birth' => '1990-12-26 16:05:00'
             ]
         ];
-        foreach ($usersInputs as $userInput) {
+        foreach($usersInputs as $userInput) {
             $user = User::create($userInput);
             $userIds[] = $user->id;
         }
-        
+
         $categoryInput = [
             'user_id' => $userIds[0], 'title' => 'Category Title'
         ];
-        $category = Category::create($categoryInput);
+        $category = Category :: create($categoryInput);
         $categoryId = $category -> id;
         $postInput = [
             'user_id' => $userIds[0], 'category_id' => $categoryId, 'title' => 'Bloody Mary', 'content' => 'content'
@@ -241,18 +248,65 @@ function dbDataFill2() {
         Message::create($msg);
 
         $userData = [
-            'user' =>  User::where('id', $userIds[0])->get(),
-            'category' => Category::where('user_id', $userIds[0])->get(),
-            'post' => Post::where('user_id', $userIds[0])-> where('category_id', $categoryId)->get(),
-            'like' => Like::where('user_id', $userIds[0])-> where('post_id', $postId)->get(),
-            'comment' => Comment::where('user_id', $userIds[0])-> where('post_id', $postId)->get(),
-            'message' => Message::where('from_user_id', $userIds[0])->get()
+            'user' =>  User::where('id', $userIds[0])->first(),
+            'categories' => Category::where('user_id', $userIds[0])->get(),
+            'posts' => Post::where('user_id', $userIds[0])-> where('category_id', $categoryId)->get(),
+            'likes' => Like::where('user_id', $userIds[0])-> where('post_id', $postId)->get(),
+            'comments' => Comment::where('user_id', $userIds[0])-> where('post_id', $postId)->get(),
+            'messages' => Message::where('from_user_id', $userIds[0])->get()
         ];
-        
-       
+
+
         dd($userData);
     }
+    function getUserData() {
+      if(!isset($_GET['email'])) {
+        dd('Insert Email');
+      }
+      $relations = [
+        'categories', 'posts', 'likes', 'comments', 'messages'
+      ];
+      $user = User::where('email',  $_GET['email'])->with($relations)->first();
+      if(!$user) {
+        dd('The user doesn\'t exist');
+      }
+      // $category = $user->categories()->create([
+      //   'title' => 'sdkjvnjdsfvkjbd'
+      // ]);
+      dd($user->categories);
+      $userData = [
+          'user' => $user,
+          'categories' => $user->categories,
+          'posts' => $user->posts,
+          'likes' => $user->likes,
+          'comments' => $user->comments,
+          'messages' => $user->messages
+      ];
+      dd($userData);
+    }
 
+    function fillData() {
+      $relations = ['categories', 'posts', 'comments', 'likes', 'messages'];
+      $users = User::with($relations)->get();
+      foreach ($users as $user) {
+        $category = $user->categories()->create(
+          ['title' => 'Another Category']
+        );
+        $post = $user->posts()->create(
+          ['category_id' => $category->id, 'title' => 'Another post', 'content' => 'some new content']
+        );
+        $user->comments()->create(
+          ['post_id' => $post->id,  'content' => 'some new comment']
+        );
+        $user->likes()->create(
+          ['post_id' => $post->id]
+        );
+      }
+
+      $users = User::with($relations)->get();
+      dd($users);
+
+    }
 
 /*
 |--------------------------------------------------------------------------
@@ -269,7 +323,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
+    DB::listen(function ($query) {
+        dump($query->sql);
+        // $query->bindings
+        // $query->time
+    });
     // dbDataFill();
     // dbDataFill2();
-    dbDataFillShow();
+    // dbDataFillShow();
+    // getUserData();
+    fillData();
+
 });

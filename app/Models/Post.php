@@ -10,4 +10,25 @@ class Post extends Model
         'user_id', 'category_id', 'title', 'content'
     ];
     protected $table = 'posts';
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Post', 'post_id', 'id');
+    }
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Post', 'post_id', 'id');
+    }
+
+    public function user()
+   {
+       return $this->belongsTo('App\Models\User');
+   }
+
+    public function category()
+   {
+       return $this->belongsTo('App\Models\Category');
+   }
+
+
 }

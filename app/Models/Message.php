@@ -10,4 +10,9 @@ class Message extends Model
         'from_user_id', 'to_user_id', 'content'
     ];
     protected $table = 'messages';
+
+    public function user()
+   {
+       return $this->belongsTo('App\Models\User');
+   }
 }
