@@ -12,13 +12,17 @@ class UsersController extends Controller
     public function showUsers()
     {
         $users = User::all();
-        dd($users);
+        if($users) {
+            dd($users);
+        }
     }
 
 
     public function showUser(Request $request, $id)
     {
         $user = User::where('id', '=', $id)->first();
-        dd($user);
+        if($user) {
+            dd($user);
+        }
     }
 }
