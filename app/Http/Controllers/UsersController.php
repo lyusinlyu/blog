@@ -7,7 +7,7 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    public function showUsers(Request $request)
+    public function index(Request $request)
     {
         $users = User::all();
         if($users) {
@@ -15,37 +15,21 @@ class UsersController extends Controller
         }
     }
 
-
-    public function showUser(Request $request, $id)
+    public function show(Request $request, $id)
     {
-        if($request->query('identificator') === 'email') {
-            $email = $id;
-            if($email) {
-            $user = User::where('email', $email)->first();
-            if($user) {
-                dd($user);
-            }
-            // $user = User::create(
-            //     [
-            //         'name' => 'unknown',
-            //         'surname' => 'unknown',
-            //         'nickname' => 'unknown',
-            //         'password' => 'default_pass',
-            //         'email' => $email,
-            //         'gender' => 'unknown',
-            //         'date_of_birth' => '1970-12-12 00:00:00'
-            //     ]
-            // );
-            // dd($user);
 
+        $allowed_identificators = ['id', 'email'];
+        $identificator = $request->query('identificator', 'id');
+        if(!in_array($identificator, $allowed_identificators)) {
+            $identificator = 'id';
         }
-        } else {
-            $user = User::where('id', $id)->first();
-            if($user) {
-            dd($user);
-            }
+        $user = User::where($identificator, $id)->first();
+        if(!$user) {
+            abort(404);
         }
-
+        $variables = [
+            'user' => $user
+        ];
+        return view('users.show', $variables);
     }
-
 }

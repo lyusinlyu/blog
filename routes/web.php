@@ -5,8 +5,8 @@ use App\Models\{
 };
 
 Route::group(['prefix' => 'users'], function(){
-    Route::get('/', 'UsersController@showUsers');
-    Route::get('{user_id}', 'UsersController@showUser');
+    Route::get('/', 'UsersController@index');
+    Route::get('{user_id}', 'UsersController@show');
     Route::get('{user_id}/posts', 'PostsController@showPosts');
     Route::get('{user_id}/posts/{post_id}', 'PostsController@showPost');
     Route::get('{user_id}/categories', 'CategoriesController@showCategories');
