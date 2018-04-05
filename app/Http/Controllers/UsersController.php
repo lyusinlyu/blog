@@ -7,12 +7,14 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $users = User::all();
-        if($users) {
-            dd($users);
-        }
+        // $users = User::all();
+        // if($users) {
+        //     dd($users);
+        // }
+        
+        return view('users.index');
     }
 
     public function show(Request $request, $id)

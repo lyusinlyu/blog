@@ -10,12 +10,8 @@
         <link rel="stylesheet" href="{{url('css/font-awesome.min.css')}}"/>
         <link rel="stylesheet" href="{{url('css/navbar.css')}}"/>
         <link rel="stylesheet" href="{{url('css/chat_styles.css')}}"/>
-        <link rel="stylesheet" href="{{url('css/form_styles.css')}}"/>
         <link rel="stylesheet" href="{{url('css/posts.css')}}"/>
-        <link rel="stylesheet" href="{{url('css/style.css')}}"/>
-
-        <!--Fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800" rel="stylesheet">
+        
 
         <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
     </head>
@@ -34,185 +30,15 @@
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="/home">Home</a></li>
-                            <li class="active"><a href="/">Jensen</a></li>
+                            <li class="active"><a href="/home">Home</a></li>
+                            <li><a href="/">Jensen</a></li>
                             <li><a href="/posts">My Posts</a></li>
                             <!-- <li><a href="#">Messages</a></li> -->                           
                         </ul>                  
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav> 
-
-            <div class="user_info_cont row">                
-                <div class="user_bg_area col-md-10">
-                    <div class="user_info_area col-md-4 col-sm-4 col-xs-12">
-                    <div class="user_info_wrapper">
-                        <img class="img-circle user_pict" src="{{url('images/bale.jpg')}}" width="150" height="150">
-                        <div class="user_nick">
-                            <h2 class="nickname">@nickname</h2>
-                            <!-- <a href="#"><button>Message</button></a> -->
-                        </div>                        
-                    </div>
-                    <h2 class="username">username surname</h2>
-                    <p class="post_count">20 posts</p>
-                </div>  
-                </div>
-                <div class="col-md-2">
-                    <div class="all_users_sidebar">
-                        <ul class="sidebar_users">
-                            <div class="topnav">                                
-                                <div class="search-container">
-                                    <form action="" method="post">
-                                        <input type="text" placeholder="Search..." name="search" maxlength="17">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                            <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen AcklesAcklesAckles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>             
-            </div>
         </header>
-
-        <section class="section_form col-md-9">
-            <div class="row">
-                <div class="col-md-5">
-                    <form class="form-horizontal">
-                        <h2>About Me</h2>
-                        <div class="form-group">
-                            <!-- <label for="InputName" class="col-sm-2 control-label">Name</label> -->
-                            <div class="col-sm-12">
-                              <input type="name" class="form-control" id="InputName" placeholder="Name">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <!-- <label for="InputSurname" class="col-sm-2 control-label">Surname</label> -->
-                            <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputSurname" placeholder="Surname">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <!-- <label for="InputNickname" class="col-sm-2 control-label">Nickname</label> -->
-                            <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputNickname" placeholder="Nickname">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <!-- <label for="inputEmail3" class="col-sm-2 control-label">Email</label> -->
-                            <div class="col-sm-12">
-                              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <!-- <label for="inputPassword3" class="col-sm-2 control-label">Password</label> -->
-                            <div class="col-sm-12">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="gender_form_group">
-                                <!-- <label for="InputGender">Gender</label> -->
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="InputGender1" value="male"> Male
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="InputGender2" value="female"> Female
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <input type="date" class="form-control" name="bday">
-                            </div>
-                        </div>
-                           
-                        <div class="form-group">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-default submit_btn">Save</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
 
         <section id="blog-section" >
             <div class="container-fluid">
@@ -566,10 +392,101 @@
                             </nav>
                         </div>
                     </div>
+                    <div class="col-md-2">
+                    <div class="all_users_sidebar">
+                        <ul class="sidebar_users">
+                        	<div class="topnav">							  	
+							  	<div class="search-container">
+								    <form action="" method="post">
+								      	<input type="text" placeholder="Search..." name="search" maxlength="17">
+								      	<button type="submit"><i class="fa fa-search"></i></button>
+								    </form>
+							  	</div>
+							</div>
+
+                            <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen AcklesAckles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                             <li><a href="#">
+                                <div class="user">
+                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                    <p class="user_name">Jensen Ackles</p>
+                                </div>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
                 </div>
             </div>
         </section>
-        <script type="text/javascript" src="{{url('js/jQuery_3.3.1.js')}}"></script>
-        <script type="text/javascript" src="{{url('js/bootstrap.min.js')}}"></script>
     </body>
 </html>
