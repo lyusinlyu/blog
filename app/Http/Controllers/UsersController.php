@@ -7,20 +7,31 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    public function showUsers()
+    public function index()
     {
-        $users = User::all();
-        if($users) {
-            dd($users);
-        }
+        // $users = User::all();
+        // if($users) {
+        //     dd($users);
+        // }
+        
+        return view('users.index');
     }
 
-
-    public function showUser(Request $request, $id)
+    public function show(Request $request, $id)
     {
-        $user = User::where('id', '=', $id)->first();
-        if($user) {
-            dd($user);
+
+        $allowed_identificators = ['id', 'email'];
+        $identificator = $request->query('identificator', 'id');
+        if(!in_array($identificator, $allowed_identificators)) {
+            $identificator = 'id';
         }
+        $user = User::where($identificator, $id)->first();
+        if(!$user) {
+            abort(404);
+        }
+        $variables = [
+            'user' => $user
+        ];
+        return view('users.show', $variables);
     }
 }
