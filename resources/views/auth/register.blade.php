@@ -90,6 +90,37 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <div class="col-md-6">
+                                {{-- <input id="gender" type="text" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus> --}}
+                                <label class="radio-inline col-form-label">
+                                    <input type="radio" name="gender" id="InputGender1" value="male" value="{{ old('gender') }}" required> Male
+                                </label>
+                                <label class="radio-inline col-form-label">
+                                    <input type="radio" name="gender" id="InputGender2" value="female" value="{{ old('gender') }}" required> Female
+                                </label>
+                                @if ($errors->has('gender'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                         <div class="form-group row">
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of birth') }}</label>
+                            <div class="col-md-6">
+                                <input type="date" id="date_of_birth" class="form-control" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" name="date_of_birth" value="{{ old('date_of_birth') }}" required autofocus>
+                                @if ($errors->has('date_of_birth'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('date_of_birth') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
