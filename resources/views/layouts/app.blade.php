@@ -86,6 +86,38 @@
 
         <main class="py-4">
             @yield('content')
+                            <div class="col-md-2">
+                                <div class="all_users_sidebar">
+                                    <ul class="sidebar_users">
+                                        <div class="topnav">
+                                            <div class="search-container">
+                                                <form action="" method="post">
+                                                    <input type="text" placeholder="Search..." name="search" maxlength="17">
+                                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        @foreach($data['users'] as $user)
+                                        <li><a href="/profiles/{{ $user['id'] }}">
+                                            <div class="user">
+                                                <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                                <p class="user_name">Jensen AcklesAckles</p>
+                                            </div>
+                                        </a></li>
+                                        @endforeach
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
         </main>
     </div>
     <script type="text/javascript" src="{{url('js/jQuery_3.3.1.js')}}"></script>

@@ -15,105 +15,13 @@
                     <p class="post_count">20 posts</p>
                 </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="all_users_sidebar">
-                        <ul class="sidebar_users">
-                            <div class="topnav">
-                                <div class="search-container">
-                                    <form action="" method="post">
-                                        <input type="text" placeholder="Search..." name="search" maxlength="17">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                            <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen AcklesAcklesAckles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </header>
-
+        @if(!isset($data['user']))
         <section class="section_form col-md-9">
             <div class="row">
                 <div class="col-md-5">
-                    <form class="form-horizontal">
+                    <form method = "post" action="{{ url('/me') }}" class="form-horizontal">
                         <h2>About Me</h2>
                         <div class="form-group">
                             <!-- <label for="InputName" class="col-sm-2 control-label">Name</label> -->
@@ -171,6 +79,24 @@
                 </div>
             </div>
         </section>
+        @else
+
+        <section class="user_about col-md-3">
+            <div class="row">
+                <div class="">
+                    <h2>About Me</h2>
+                    <p>{{ $data['user']->name }}</p>
+                    <p>{{ $data['user']->surname }}</p>
+                    <p>{{ $data['user']->nickname }}</p>
+                    <p>{{ $data['user']->email }}</p>
+                    <p>{{ $data['user']->gender }}</p>
+                    <p>{{ $data['user']->date_of_birth }}</p>
+
+                </div>
+            </div>
+        </section>
+
+        @endif
 
         <section id="blog-section" >
             <div class="container-fluid">
@@ -524,7 +450,4 @@
                             </nav>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 @endsection
