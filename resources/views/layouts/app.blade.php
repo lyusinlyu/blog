@@ -16,17 +16,31 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!--My Styles-->
+    {{-- <link rel="stylesheet" href="{{url('css/normalize.css')}}"/> --}}
+    <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{url('css/font-awesome.min.css')}}"/>
+    {{-- <link rel="stylesheet" href="{{url('css/navbar.css')}}"/> --}}
+    <link rel="stylesheet" href="{{url('css/chat_styles.css')}}"/>
+    <link rel="stylesheet" href="{{url('css/form_styles.css')}}"/>
+    <link rel="stylesheet" href="{{url('css/posts.css')}}"/>
+    <link rel="stylesheet" href="{{url('css/style.css')}}"/>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                {{-- <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
-                </a>
+                </a> --}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,12 +58,15 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                            <li><a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/me') }}">{{ __('My Profile') }}</a>
+                                    <a class="dropdown-item" href="#">{{ __('My Posts') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -71,5 +88,8 @@
             @yield('content')
         </main>
     </div>
+    <script type="text/javascript" src="{{url('js/jQuery_3.3.1.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/bootstrap.min.js')}}"></script>
+    <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 </body>
 </html>

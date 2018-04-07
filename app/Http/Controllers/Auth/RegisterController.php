@@ -30,7 +30,6 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $data = $request->all();
-
         $this->validator($data)->validate();
 
         event(new Registered($user = $this->create($data)));
@@ -74,6 +73,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'gender' => 'string|nullable|in:male,female',
+            'date_of_birth' => 'nullable|date'
         ]);
     }
 
@@ -90,7 +90,9 @@ class RegisterController extends Controller
             'surname' => $data['surname'],
             'nickname' => $data['nickname'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
+            'gender' => $data['gender'],
+            'date_of_birth' => $data['date_of_birth']
         ]);
     }
 }

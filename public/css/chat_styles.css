@@ -1,6 +1,6 @@
 .topnav {
   margin-bottom: 50px;
-  
+
 }
 
 .topnav .search-container {
@@ -14,7 +14,7 @@
   margin-top: 8px;
   font-size: 17px;
   border: 1px solid #eee;
-  
+
 }
 
 .topnav .search-container button {
@@ -34,7 +34,7 @@
 .all_users_sidebar .sidebar_users{
 	list-style: none;
 	position: fixed;
-	top: 40px;
+	top: 64px;
 	bottom: 0;
 	right: 0;
 	background: #fff;
@@ -65,7 +65,7 @@
 	color: #5F706D;
 	text-transform: capitalize;
 	margin-left: 10px;
-	white-space: nowrap; 
+	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
