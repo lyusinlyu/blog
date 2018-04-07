@@ -16,6 +16,10 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -61,7 +65,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">{{ __('My Profile') }}</a>
+                                    <a class="dropdown-item" href="{{ url('/me') }}">{{ __('My Profile') }}</a>
                                     <a class="dropdown-item" href="#">{{ __('My Posts') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -84,5 +88,8 @@
             @yield('content')
         </main>
     </div>
+    <script type="text/javascript" src="{{url('js/jQuery_3.3.1.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/bootstrap.min.js')}}"></script>
+    <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 </body>
 </html>
