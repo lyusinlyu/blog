@@ -19,6 +19,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!--My Styles-->
+    {{-- <link rel="stylesheet" href="{{url('css/normalize.css')}}"/> --}}
+    <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{url('css/font-awesome.min.css')}}"/>
+    {{-- <link rel="stylesheet" href="{{url('css/navbar.css')}}"/> --}}
+    <link rel="stylesheet" href="{{url('css/chat_styles.css')}}"/>
+    <link rel="stylesheet" href="{{url('css/form_styles.css')}}"/>
+    <link rel="stylesheet" href="{{url('css/posts.css')}}"/>
+    <link rel="stylesheet" href="{{url('css/style.css')}}"/>
 </head>
 <body>
     <div id="app">
@@ -47,7 +57,7 @@
                             <li><a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
