@@ -26,27 +26,32 @@
                         <h2>About Me</h2>
                         <div class="form-group">
                             <div class="col-sm-12">
-                              <input type="name" class="form-control" id="InputName" placeholder="{{ $data['user']->name }}">
+                              <input type="name" class="form-control" id="InputName" placeholder="{{ $data['user']->name }}" name="name">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputSurname" placeholder="{{ $data['user']->surname }}">
+                               <input type="text" class="form-control" id="InputSurname" placeholder="{{ $data['user']->surname }}" name="surname">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputNickname" placeholder="{{ $data['user']->nickname }}">
+                               <input type="text" class="form-control" id="InputNickname" placeholder="{{ $data['user']->nickname }}" name="nickname">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                              <input type="email" class="form-control" id="inputEmail3" placeholder="{{ $data['user']->email }}">
+                              <input type="email" class="form-control" id="inputEmail3" placeholder="{{ $data['user']->email }}" name="email">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
                             </div>
                         </div>
                         <div class="form-group gender_form_group row">
@@ -68,7 +73,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                            @if(isset($data['user']->date_of_birth) && !empty($data['user']->date_of_birth))
+                            @if($data['user']->date_of_birth)
                                 <input type="date" class="form-control" name="date_of_birth" value="{{ $data['user']->date_of_birth }}">
                             @else
                             <input type="date" class="form-control" name="date_of_birth">
