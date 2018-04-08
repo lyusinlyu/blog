@@ -15,25 +15,29 @@ class ProfileController extends Controller
 
     public function showAuthUserProfile()
     {
-        $auth_user = Auth::user();
-        $users = User::where('id', '!=', $auth_user)->get();
+        $user = Auth::user();
+        $users = User::where('id', '!=', Auth::user()->id)->get();
         $data = [
-            'auth_user' => $auth_user,
-            'users' => $users
+            'users' => $users,
+            'user' => $user
         ];
         return view('profile.index')->with('data', $data);
     }
 
     public function showUserProfile(Request $request, $id)
     {
-        $auth_user = Auth::user();
-        $users = User::where('id', '!=', $auth_user->id)->get();
+        $users = User::where('id', '!=', Auth::user()->id)->get();
         $user = User::find($id);
         $data = [
-            'auth_user' => $auth_user,
             'users' => $users,
             'user' => $user
         ];
         return view('profile.index')->with('data', $data);
+    }
+
+    public function updateAuthUserProfile(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
     }
 }

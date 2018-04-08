@@ -3,6 +3,7 @@
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/me', 'ProfileController@showAuthUserProfile');
+Route::post('/me', 'ProfileController@updateAuthUserProfile');
 Route::get('/profiles/{id}', 'ProfileController@showUserProfile');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

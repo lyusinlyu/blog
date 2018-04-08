@@ -17,56 +17,62 @@
                 </div>
             </div>
         </header>
-        @if(!isset($data['user']))
+        @if($data['user']->id == Auth::user()->id)
         <section class="section_form col-md-9">
             <div class="row">
                 <div class="col-md-5">
                     <form method = "post" action="{{ url('/me') }}" class="form-horizontal">
+                        @csrf
                         <h2>About Me</h2>
                         <div class="form-group">
-                            <!-- <label for="InputName" class="col-sm-2 control-label">Name</label> -->
                             <div class="col-sm-12">
-                              <input type="name" class="form-control" id="InputName" placeholder="Name">
+                              <input type="name" class="form-control" id="InputName" placeholder="{{ $data['user']->name }}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <label for="InputSurname" class="col-sm-2 control-label">Surname</label> -->
                             <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputSurname" placeholder="Surname">
+                               <input type="text" class="form-control" id="InputSurname" placeholder="{{ $data['user']->surname }}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <label for="InputNickname" class="col-sm-2 control-label">Nickname</label> -->
                             <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputNickname" placeholder="Nickname">
+                               <input type="text" class="form-control" id="InputNickname" placeholder="{{ $data['user']->nickname }}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <label for="inputEmail3" class="col-sm-2 control-label">Email</label> -->
                             <div class="col-sm-12">
-                              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                              <input type="email" class="form-control" id="inputEmail3" placeholder="{{ $data['user']->email }}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <label for="inputPassword3" class="col-sm-2 control-label">Password</label> -->
                             <div class="col-sm-12">
                                 <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="gender_form_group">
-                                <!-- <label for="InputGender">Gender</label> -->
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="InputGender1" value="male"> Male
+                        <div class="form-group gender_form_group row">
+                            <div>
+                                <label class="radio-inline col-form-label">
+                                    @if($data['user']->gender == 'male')
+                                    <input type="radio" name="gender" id="InputGender1" value="male" checked>Male
+                                    @else <input type="radio" name="gender" id="InputGender1" value="male" required>Male
+                                    @endif
                                 </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="InputGender2" value="female"> Female
+                                <label class="radio-inline col-form-label">
+                                    @if($data['user']->gender == 'female')
+                                    <input type="radio" name="gender" id="InputGender1" value="female" checked>Female
+                                    @else <input type="radio" name="gender" id="InputGender1" value="female" required>Female
+                                    @endif
                                 </label>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="date" class="form-control" name="bday">
+                            @if(isset($data['user']->date_of_birth) && !empty($data['user']->date_of_birth))
+                                <input type="date" class="form-control" name="date_of_birth" value="{{ $data['user']->date_of_birth }}">
+                            @else
+                            <input type="date" class="form-control" name="date_of_birth">
+                            @endif
                             </div>
                         </div>
 
@@ -79,6 +85,7 @@
                 </div>
             </div>
         </section>
+
         @else
 
         <section class="user_about col-md-3">
