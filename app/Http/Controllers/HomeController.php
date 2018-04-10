@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home.index');
+        $auth_user = Auth::user();
+        $users = User::where('id', '!=', $auth_user->id)->get();
+        $data = ['users' => $users];
+        return view('home.index')->with('data', $data);
     }
 }

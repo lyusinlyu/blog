@@ -15,150 +15,69 @@
                     <p class="post_count">20 posts</p>
                 </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="all_users_sidebar">
-                        <ul class="sidebar_users">
-                            <div class="topnav">
-                                <div class="search-container">
-                                    <form action="" method="post">
-                                        <input type="text" placeholder="Search..." name="search" maxlength="17">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                            <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen AcklesAcklesAckles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                             <li><a href="#">
-                                <div class="user">
-                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                    <p class="user_name">Jensen Ackles</p>
-                                </div>
-                            </a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </header>
-
+        @if($data['user']->id == Auth::user()->id)
         <section class="section_form col-md-9">
             <div class="row">
                 <div class="col-md-5">
-                    <form class="form-horizontal">
+                    <form method = "post" action="{{ url('/me') }}" class="form-horizontal">
+                        @csrf
                         <h2>About Me</h2>
                         <div class="form-group">
-                            <!-- <label for="InputName" class="col-sm-2 control-label">Name</label> -->
                             <div class="col-sm-12">
-                              <input type="name" class="form-control" id="InputName" placeholder="Name">
+                              <input type="name" class="form-control" id="InputName" placeholder="{{ $data['user']->name }}" name="name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <label for="InputSurname" class="col-sm-2 control-label">Surname</label> -->
                             <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputSurname" placeholder="Surname">
+                               <input type="text" class="form-control" id="InputSurname" placeholder="{{ $data['user']->surname }}" name="surname">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <label for="InputNickname" class="col-sm-2 control-label">Nickname</label> -->
                             <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputNickname" placeholder="Nickname">
+                               <input type="text" class="form-control" id="InputNickname" placeholder="{{ $data['user']->nickname }}" name="nickname">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <label for="inputEmail3" class="col-sm-2 control-label">Email</label> -->
                             <div class="col-sm-12">
-                              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                              <input type="email" class="form-control" id="inputEmail3" placeholder="{{ $data['user']->email }}" name="email">
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <label for="inputPassword3" class="col-sm-2 control-label">Password</label> -->
                             <div class="col-sm-12">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="gender_form_group">
-                                <!-- <label for="InputGender">Gender</label> -->
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="InputGender1" value="male"> Male
+                            <div class="col-sm-12">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
+                            </div>
+                        </div>
+                        <div class="form-group gender_form_group row">
+                            <div>
+                                <label class="radio-inline col-form-label">
+                                    @if($data['user']->gender == 'male')
+                                    <input type="radio" name="gender" id="InputGender1" value="male" checked>Male
+                                    @else <input type="radio" name="gender" id="InputGender1" value="male" required>Male
+                                    @endif
                                 </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="InputGender2" value="female"> Female
+                                <label class="radio-inline col-form-label">
+                                    @if($data['user']->gender == 'female')
+                                    <input type="radio" name="gender" id="InputGender1" value="female" checked>Female
+                                    @else <input type="radio" name="gender" id="InputGender1" value="female" required>Female
+                                    @endif
                                 </label>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="date" class="form-control" name="bday">
+                            @if($data['user']->date_of_birth)
+                                <input type="date" class="form-control" name="date_of_birth" value="{{ $data['user']->date_of_birth }}">
+                            @else
+                            <input type="date" class="form-control" name="date_of_birth">
+                            @endif
                             </div>
                         </div>
 
@@ -171,6 +90,25 @@
                 </div>
             </div>
         </section>
+
+        @else
+
+        <section class="user_about col-md-3">
+            <div class="row">
+                <div class="">
+                    <h2>About Me</h2>
+                    <p>{{ $data['user']->name }}</p>
+                    <p>{{ $data['user']->surname }}</p>
+                    <p>{{ $data['user']->nickname }}</p>
+                    <p>{{ $data['user']->email }}</p>
+                    <p>{{ $data['user']->gender }}</p>
+                    <p>{{ $data['user']->date_of_birth }}</p>
+
+                </div>
+            </div>
+        </section>
+
+        @endif
 
         <section id="blog-section" >
             <div class="container-fluid">
@@ -524,7 +462,4 @@
                             </nav>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 @endsection
