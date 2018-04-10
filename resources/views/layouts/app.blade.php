@@ -98,13 +98,15 @@
                                             </div>
                                         </div>
 
-                                        @foreach($data['users'] as $user)
-                                        <li><a href="/profiles/{{ $user['id'] }}">
-                                            <div class="user">
-                                                <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                                <p class="user_name">Jensen AcklesAckles</p>
-                                            </div>
-                                        </a></li>
+                                        @foreach($users as $user)
+                                            <li>
+                                                <a href="/profiles/{{ $user['id'] }}">
+                                                    <div class="user">
+                                                        <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                                        <p class="user_name">Jensen AcklesAckles</p>
+                                                    </div>
+                                                </a>
+                                            </li>
                                         @endforeach
 
                                     </ul>

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@include('errors.messages')
     <header class="header">
     <div class="user_info_cont row">
                 <div class="user_bg_area col-md-10">
@@ -17,100 +18,73 @@
                 </div>
             </div>
         </header>
-        @if($data['user']->id == Auth::user()->id)
-        <section class="section_form col-md-9">
-            <div class="row">
-                <div class="col-md-5">
-                    <form method = "post" action="{{ url('/me') }}" class="form-horizontal">
-                        @csrf
-                        <h2>About Me</h2>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                              <input type="name" class="form-control" id="InputName" placeholder="{{ $data['user']->name }}" name="name">
+        @if($user->id === Auth::id())
+            <section class="section_form col-md-9">
+                <div class="row">
+                    <div class="col-md-5">
+                        <form method="post" action="{{ url('/me') }}" class="form-horizontal">
+                            @csrf
+                            <h2>About Me</h2>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="name" class="form-control" id="InputName" value="{{ $user->name }}" name="name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputSurname" placeholder="{{ $data['user']->surname }}" name="surname">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control"  value="{{ $user->surname }}" name="surname">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                               <input type="text" class="form-control" id="InputNickname" placeholder="{{ $data['user']->nickname }}" name="nickname">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control"  value="{{ $user->nickname }}" name="nickname">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                              <input type="email" class="form-control" id="inputEmail3" placeholder="{{ $data['user']->email }}" name="email">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="email" class="form-control"  value="{{ $user->email }}" name="email">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                            <div class="form-group gender_form_group row">
+                                <div>
+                                    <label class="radio-inline col-form-label">
+                                        <input type="radio" name="gender" value="male" @if($user->gender == 'male')checked @endif>Male
+                                    </label>
+                                    <label class="radio-inline col-form-label">
+                                        <input type="radio" name="gender" value="female" @if($user->gender == 'female')checked @endif>Female
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="date" class="form-control" name="date_of_birth" @if($user->date_of_birth) value="{{ $user->date_of_birth }}" @endif>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group gender_form_group row">
-                            <div>
-                                <label class="radio-inline col-form-label">
-                                    @if($data['user']->gender == 'male')
-                                    <input type="radio" name="gender" id="InputGender1" value="male" checked>Male
-                                    @else <input type="radio" name="gender" id="InputGender1" value="male" required>Male
-                                    @endif
-                                </label>
-                                <label class="radio-inline col-form-label">
-                                    @if($data['user']->gender == 'female')
-                                    <input type="radio" name="gender" id="InputGender1" value="female" checked>Female
-                                    @else <input type="radio" name="gender" id="InputGender1" value="female" required>Female
-                                    @endif
-                                </label>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-default submit_btn">Save</button>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                            @if($data['user']->date_of_birth)
-                                <input type="date" class="form-control" name="date_of_birth" value="{{ $data['user']->date_of_birth }}">
-                            @else
-                            <input type="date" class="form-control" name="date_of_birth">
-                            @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-default submit_btn">Save</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </section>
-
+            </section>
         @else
-
-        <section class="user_about col-md-3">
-            <div class="row">
-                <div class="">
-                    <h2>About Me</h2>
-                    <p>{{ $data['user']->name }}</p>
-                    <p>{{ $data['user']->surname }}</p>
-                    <p>{{ $data['user']->nickname }}</p>
-                    <p>{{ $data['user']->email }}</p>
-                    <p>{{ $data['user']->gender }}</p>
-                    <p>{{ $data['user']->date_of_birth }}</p>
-
+            <section class="user_about col-md-3">
+                <div class="row">
+                    <div class="">
+                        <h2>About Me</h2>
+                        <p>{{ $user->name }}</p>
+                        <p>{{ $user->surname }}</p>
+                        <p>{{ $user->nickname }}</p>
+                        <p>{{ $user->email }}</p>
+                        <p>{{ $user->gender }}</p>
+                        <p>{{ $user->date_of_birth }}</p>
+                    </div>
                 </div>
-            </div>
-        </section>
-
+            </section>
         @endif
-
-        <section id="blog-section" >
+            <section id="blog-section" >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-10">
