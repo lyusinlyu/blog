@@ -68,10 +68,12 @@
                                         </span>
                                     </div>
                                 </aside>
-                                <div class="btn-group edit_delete_btn_group pull-right" role="group">
-                                    <button type="button" class="btn btn-default btn_edit">Edit</button>
-                                    <button type="button" class="btn btn-default btn_delete">Delete</button>
-                                </div>
+                                @if($user->id === Auth::id())
+                                    <div class="btn-group edit_delete_btn_group pull-right" role="group">
+                                        <a href="/edit/{{ $post->id }}"><button type="button" class="btn btn-default btn_edit">Edit</button></a>
+                                        <a href="/delete/{{ $post->id }}"><button type="button" class="btn btn-default btn_delete">Delete</button></a>
+                                    </div>
+                                @endif
                                 <section class="add_comments">
                                     <form class="">
                                         <div class="form-group">

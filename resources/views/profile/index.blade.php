@@ -92,9 +92,9 @@
                             @foreach($user->posts as $post)
                                 <div class="col-md-4">
                                     <aside>
-                                        {{-- <div class="category_cont">
-                                            <h3></h3>
-                                        </div>  --}}
+                                        <div class="category_cont">
+                                            <h3>{{ $post->category['title'] }}</h3>
+                                        </div>
                                         <img src="{{url('images/posts_img/BB.jpg')}}" class="img-responsive">
                                         <div class="content-title">
                                             <div class="text-center caption">

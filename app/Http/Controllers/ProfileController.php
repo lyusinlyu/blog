@@ -20,8 +20,8 @@ class ProfileController extends Controller
     public function showAuthUserProfile()
     {
         $user = Auth::user();
-        $users = User::where('id', '!=', Auth::user()->id)->get();
-        $posts = $user->with('posts')->get();
+        $users = User::where('id', '!=', $user->id)->get();
+        $posts = Post::where('user_id', $user->id)->with('category')->get();
         return view('profile.index', [
             'users' => $users,
             'user' => $user,
@@ -33,7 +33,7 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         $users = User::where('id', '!=', Auth::user()->id)->get();
-        $posts = $user->with('posts')->get();
+        $posts = Post::where('user_id', $user->id)->with('category')->get();
         return view('profile.index', [
             'user' => $user,
             'users' => $users,

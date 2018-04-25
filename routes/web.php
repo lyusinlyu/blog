@@ -8,6 +8,8 @@ Route::get('/profiles/{id}', 'ProfileController@showUserProfile');
 
 Route::get('post/{user_id}/{id}', 'PostsController@showPost');
 Route::post('/create', 'PostsController@createPost');
+Route::get('/edit/{id}', 'PostsController@editPost');
+Route::get('/delete/{id}', 'PostsController@deletePost');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');

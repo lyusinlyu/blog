@@ -45,6 +45,17 @@ class PostsController extends Controller
         return redirect('/me');
     }
 
+    public function editPost($id) {
+        $post = Post::find($id);
+        dd($post);
+    }
+
+    public function deletePost($id) {
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('/me');
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
