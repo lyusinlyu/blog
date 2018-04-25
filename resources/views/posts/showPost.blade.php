@@ -47,6 +47,44 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="modal fade edit-post-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <form class="form-horizontal register_form" method="post" action="{{ url('/edit') }}">
+                                            @csrf
+                                            @if($categories)
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label for="sel1">Select Category</label>
+                                                        <select class="form-control" id="category_select" name = "category">
+                                                            @foreach($categories as $category)
+                                                                <option>{{ $category->title }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            <input type="hidden" class="form-control" id = "post_id" name="id" value="{{ $post->id }}">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id = "inputTitle" name="title" value="{{ $post->title }}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <textarea class="form-control" rows="5"   id = "inputContent" name="content">{{ $post->content }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <button type="submit" class="btn btn-default submit_btn">Edit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             @if($post)
                                 <aside class="post">
                                     <div class="category_cont">
@@ -70,7 +108,7 @@
                                 </aside>
                                 @if($user->id === Auth::id())
                                     <div class="btn-group edit_delete_btn_group pull-right" role="group">
-                                        <a href="/edit/{{ $post->id }}"><button type="button" class="btn btn-default btn_edit">Edit</button></a>
+                                        <button type="button" class="btn btn-default btn_edit" data-toggle="modal" data-target=".edit-post-modal">Edit</button>
                                         <a href="/delete/{{ $post->id }}"><button type="button" class="btn btn-default btn_delete">Delete</button></a>
                                     </div>
                                 @endif

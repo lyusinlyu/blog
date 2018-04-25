@@ -34,7 +34,11 @@ class PostsController extends Controller
 
     public function createPost(Request $request) {
         $data = $request->all();
-        $this->validator($data)->validate();
+        $data = $request->validate([
+            'category' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:255'
+        ]);
         $category = Category::where('title',$data['category'])->first();
         Post::create([
             'user_id' => Auth::user()->id,
@@ -42,26 +46,30 @@ class PostsController extends Controller
             'title' => $data['title'],
             'content' => $data['content']
         ]);
-        return redirect('/me');
+        return back();
     }
 
-    public function editPost($id) {
-        $post = Post::find($id);
-        dd($post);
+    public function editPost(Request $request) {
+        $data = $request->all();
+        $id = $data['id'];
+        $category = Category::where('title',$data['category'])->first();
+        $data = $request->validate([
+            'category' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:255'
+        ]);
+        Post::where('id', $id)->update([
+            'user_id' => Auth::user()->id,
+            'category_id' => $category->id,
+            'title' => $data['title'],
+            'content' => $data['content']
+        ]);
+        return back();
     }
 
     public function deletePost($id) {
         $post = Post::find($id);
         $post->delete();
         return redirect('/me');
-    }
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'category' => 'required|string|max:255',
-            'title' => 'required|string|max:255',
-            'content' => 'required|string|max:255'
-        ]);
     }
 }
