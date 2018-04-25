@@ -13,11 +13,11 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->hasMany('App\Models\Post', 'post_id', 'id');
+        return $this->hasMany('App\Models\Comment', 'post_id', 'id');
     }
     public function likes()
     {
-        return $this->hasMany('App\Models\Post', 'post_id', 'id');
+        return $this->hasMany('App\Models\Like', 'post_id', 'id');
     }
 
     public function user()

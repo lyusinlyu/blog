@@ -57,15 +57,21 @@
 	align-items: center;
 	justify-content: start;
 }
-.user .user_img {
-
+.sidebar_user {
+  margin-left: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.user .user_name {
+.user .user_img {
+    margin-right: 5px;
+}
+.user .user_name,
+.user .user_surname {
 	text-decoration: none;
 	color: #5F706D;
 	text-transform: capitalize;
-	margin-left: 10px;
-	white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+}
+.user_item > a:hover {
+    text-decoration: none;
 }

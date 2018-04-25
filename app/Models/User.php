@@ -28,11 +28,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function categories()
-    {
-        return $this->hasMany('App\Models\Category', 'user_id', 'id');
-    }
-
     public function posts()
     {
         return $this->hasMany('App\Models\Post', 'user_id', 'id');

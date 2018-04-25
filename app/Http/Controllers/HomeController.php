@@ -27,7 +27,8 @@ class HomeController extends Controller
     {
         $auth_user = Auth::user();
         $users = User::where('id', '!=', $auth_user->id)->get();
-        $data = ['users' => $users];
-        return view('home.index')->with('data', $data);
+        return view('home.index', [
+            'users' => $users
+        ]);
     }
 }

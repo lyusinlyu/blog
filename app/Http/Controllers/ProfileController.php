@@ -6,6 +6,8 @@ use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
@@ -19,19 +21,23 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $users = User::where('id', '!=', Auth::user()->id)->get();
+        $posts = $user->with('posts')->get();
         return view('profile.index', [
             'users' => $users,
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts
         ]);
     }
 
     public function showUserProfile($id)
     {
-        $users = User::where('id', '!=', Auth::user()->id)->get();
         $user = User::find($id);
+        $users = User::where('id', '!=', Auth::user()->id)->get();
+        $posts = $user->with('posts')->get();
         return view('profile.index', [
+            'user' => $user,
             'users' => $users,
-            'user' => $user
+            'posts' => $posts
         ]);
     }
 
