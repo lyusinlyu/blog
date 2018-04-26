@@ -52,15 +52,14 @@ class PostsController extends Controller
         return back();
     }
 
-    public function editPost(Request $request) {
+    public function editPost(Request $request, $id) {
         $data = $request->all();
-        $id = $data['id'];
-        $category = Category::where('title',$data['category'])->first();
         $data = $request->validate([
             'category' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'content' => 'required|string|max:255'
         ]);
+        $category = Category::where('title', $data['category'])->first();
         Post::where('id', $id)->update([
             'user_id' => Auth::user()->id,
             'category_id' => $category->id,

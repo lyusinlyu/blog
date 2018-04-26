@@ -51,7 +51,7 @@
                             <div class="modal fade edit-post-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                 <div class="modal-dialog modal-sm" role="document">
                                     <div class="modal-content">
-                                        <form class="form-horizontal register_form" method="post" action="{{ url('/edit') }}">
+                                        <form class="form-horizontal register_form" method="post" action="{{ url('/edit/'.$post->id) }}">
                                             @csrf
                                             @if($categories)
                                                 <div class="form-group">
@@ -109,17 +109,16 @@
                                 @if($user->id === Auth::id())
                                     <div class="btn-group edit_delete_btn_group pull-right" role="group">
                                         <button type="button" class="btn btn-default btn_edit" data-toggle="modal" data-target=".edit-post-modal">Edit</button>
-                                        <a href="/delete/{{ $post->id }}"><button type="button" class="btn btn-default btn_delete">Delete</button></a>
+                                        <a href="{{ url('/delete/'.$post->id) }}"><button type="button" class="btn btn-default btn_delete">Delete</button></a>
                                     </div>
                                 @endif
                                 <section class="add_comments">
-                                    <form class="">
+                                    <form method="post" action="{{ url('/comment/'.$post->id) }}">
+                                        @csrf
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="5" placeholder="Add Your Comment"></textarea>
+                                            <textarea class="form-control" rows="5" name="comment" placeholder="Add Your Comment"></textarea>
                                         </div>
-
                                         <button type="submit" class="btn create_post_btn pull-right">Comment</button>
-
                                     </form>
                                 </section>
                                 <hr class="horizontal">
