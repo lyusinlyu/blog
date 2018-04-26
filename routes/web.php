@@ -2,6 +2,7 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/posts', 'ProfileController@getMyPosts');
 Route::get('/me', 'ProfileController@showAuthUserProfile');
 Route::post('/me', 'ProfileController@updateAuthUserProfile');
 Route::get('/profiles/{id}', 'ProfileController@showUserProfile');

@@ -55,4 +55,13 @@ class ProfileController extends Controller
         $user->update($data);
         return back();
     }
+
+    public function getMyPosts() {
+        $users = User::where('id', '!=', Auth::user()->id)->get();
+        $posts = Post::where('user_id', Auth::user()->id)->with('category', 'user')->get();
+        return view('home.index', [
+            'users' => $users,
+            'posts' => $posts
+        ]);
+    }
 }

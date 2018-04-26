@@ -22,7 +22,6 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}"/>
         <link rel="stylesheet" href="{{url('css/font-awesome.min.css')}}"/>
-        <!-- <link rel="stylesheet" href="{{url('css/navbar.css')}}"/> -->
         <link rel="stylesheet" href="{{url('css/chat_styles.css')}}"/>
         <link rel="stylesheet" href="{{url('css/form_styles.css')}}"/>
         <link rel="stylesheet" href="{{url('css/posts.css')}}"/>
@@ -50,7 +49,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ url('/me') }}">{{ __('My Profile') }}</a>
-                                        <a class="dropdown-item" href="#">{{ __('My Posts') }}</a>
+                                        <a class="dropdown-item" href="/posts">{{ __('My Posts') }}</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

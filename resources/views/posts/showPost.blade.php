@@ -59,7 +59,7 @@
                                                         <label for="sel1">Select Category</label>
                                                         <select class="form-control" id="category_select" name = "category">
                                                             @foreach($categories as $category)
-                                                                <option>{{ $category->title }}</option>
+                                                                <option @if($category->id === $post->category['id']) selected @endif>{{ $category->title }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>

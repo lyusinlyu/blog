@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -23,12 +24,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $auth_user = Auth::user();
-        $users = User::where('id', '!=', $auth_user->id)->get();
+        $users = User::where('id', '!=', Auth::user()->id)->get();
+        $posts = Post::with('category', 'user')->get();
         return view('home.index', [
-            'users' => $users
+            'users' => $users,
+            'posts' => $posts
         ]);
     }
 }
