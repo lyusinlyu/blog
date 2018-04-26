@@ -13,6 +13,7 @@ Route::post('/edit/{id}', 'PostsController@editPost');
 Route::get('/delete/{id}', 'PostsController@deletePost');
 
 Route::post('/comment/{post_id}', 'CommentsController@createComment');
+Route::get('/like/{id}/{post_id}', 'LikesController@addLike');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');

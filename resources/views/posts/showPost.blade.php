@@ -112,6 +112,7 @@
                                         <a href="{{ url('/delete/'.$post->id) }}"><button type="button" class="btn btn-default btn_delete">Delete</button></a>
                                     </div>
                                 @endif
+                                <div class="pull-right like_img"><a href="{{ url('/like/'.Auth::user()->id.'/'.$post->id) }}"><img src="{{url('images/posts_img/like.jpg')}}" width="30"></a></div>
                                 <section class="add_comments">
                                     <form method="post" action="{{ url('/comment/'.$post->id) }}">
                                         @csrf

@@ -121,6 +121,13 @@
 .post_row .create_btn {
     margin-top: 30px;
 }
+.like_img {
+    margin: 10px;
+    clear: both;
+}
+.like_img img {
+    cursor: pointer;
+}
 .add_comments {
     margin-top: 30px;
 }
@@ -143,7 +150,7 @@
 }
 .edit_delete_btn_group {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 .edit_delete_btn_group .btn_edit {
     background: #9dc132;

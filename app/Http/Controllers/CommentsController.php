@@ -6,13 +6,7 @@ use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\{
-    User,
-    Post,
-    Category,
-    Like,
-    Comment
-};
+use App\Models\Comment;
 
 class CommentsController extends Controller
 {
