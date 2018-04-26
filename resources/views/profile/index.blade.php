@@ -109,10 +109,10 @@
                                             <span class="pull-right">
                                                 <a href="#" data-toggle="tooltip" data-placement="left" title="Comments">
                                                     <i class="fa fa-comments" ></i>
-                                                30</a>
+                                                {{ $post->comments->count() }}</a>
                                                 <a href="#" data-toggle="tooltip" data-placement="right" title="Loved">
                                                     <i class="fa fa-heart"></i>
-                                                20</a>
+                                                {{ $post->likes->count() }}</a>
                                             </span>
                                             <div class="user-ditels">
                                                 <div class="user-img"><img src="{{url('images/users_chat/user2.jpg')}}"></div>

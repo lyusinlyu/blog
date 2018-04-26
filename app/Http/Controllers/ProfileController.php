@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Post;
-use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
+use App\Models\{
+    User,
+    Post,
+    Category,
+    Like,
+    Comment
+};
 
 class ProfileController extends Controller
 {
@@ -21,7 +25,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $users = User::where('id', '!=', $user->id)->get();
-        $posts = Post::where('user_id', $user->id)->with('category')->get();
+        $posts = Post::where('user_id', $user->id)->with('category', 'comments', 'likes')->get();
         return view('profile.index', [
             'users' => $users,
             'user' => $user,
@@ -33,7 +37,7 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         $users = User::where('id', '!=', Auth::user()->id)->get();
-        $posts = Post::where('user_id', $user->id)->with('category')->get();
+        $posts = Post::where('user_id', $user->id)->with('category','comments', 'likes')->get();
         return view('profile.index', [
             'user' => $user,
             'users' => $users,
@@ -58,7 +62,7 @@ class ProfileController extends Controller
 
     public function getMyPosts() {
         $users = User::where('id', '!=', Auth::user()->id)->get();
-        $posts = Post::where('user_id', Auth::user()->id)->with('category', 'user')->get();
+        $posts = Post::where('user_id', Auth::user()->id)->with('category', 'user', 'comments', 'likes')->get();
         return view('home.index', [
             'users' => $users,
             'posts' => $posts

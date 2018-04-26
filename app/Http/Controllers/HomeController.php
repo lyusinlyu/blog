@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Post;
+use App\Models\{
+    User,
+    Post,
+    Category,
+    Like,
+    Comment
+};
 
 class HomeController extends Controller
 {

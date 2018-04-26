@@ -101,8 +101,8 @@
                                         <img class="user-small-img" src="{{url('images/users_chat/user2.jpg')}}">
                                         <span>{{ $user->name }} {{ $user->surname }}</span>
                                         <span class="pull-right">
-                                            <a href="#" data-toggle="tooltip" data-placement="left" title="Comments"><i class="fa fa-comments" ></i> {{ $commentsCount }}</a>
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="Loved"><i class="fa fa-heart"></i>{{ $likesCount }}</a>
+                                            <a href="#" data-toggle="tooltip" data-placement="left" title="Comments"><i class="fa fa-comments" ></i> {{ $post->comments->count() }}</a>
+                                            <a href="#" data-toggle="tooltip" data-placement="right" title="Loved"><i class="fa fa-heart"></i>{{ $post->likes->count() }}</a>
                                         </span>
                                     </div>
                                 </aside>
@@ -123,14 +123,14 @@
                                     </form>
                                 </section>
                                 <hr class="horizontal">
-                                @if($post->comments)
-                                    @foreach($post->comments as $comment)
+                                @if($comments)
+                                    @foreach($comments as $comment)
                                         <section class="comments">
                                             <div class="row comments_cont">
                                                 <div class="col-md-2">
                                                     <div class="comment_user">
                                                         <img class="user-small-img img-circle" src="{{url('images/users_chat/user2.jpg')}}" width="50px" height="50px">
-                                                        <span>@nickname</span>
+                                                        <span>{{ $comment->user['nickname'] }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-9 comment_text">

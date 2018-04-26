@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
-use App\Models\Post;
-use App\Models\Category;
 use App\Http\Controllers\Redirect;
+use App\Models\{
+    User,
+    Post,
+    Category,
+    Like,
+    Comment
+};
+
 
 class PostsController extends Controller
 {
@@ -18,16 +23,14 @@ class PostsController extends Controller
         $user = User::where('id', $id)->first();
         if($post_id) {
             $post = Post::where('id', $post_id)->with('category', 'comments', 'likes')->first();
+            $comments = $post->comments()->with('user')->get();
             $categories = Category::all();
-            $commentsCount = $post->comments->count();
-            $likesCount = $post->likes->count();
             return view('posts.showPost', [
                 'users' => $users,
                 'categories' => $categories,
                 'user' => $user,
                 'post' => $post,
-                'commentsCount' => $commentsCount,
-                'likesCount' => $likesCount
+                'comments' => $comments
             ]);
         }
     }
