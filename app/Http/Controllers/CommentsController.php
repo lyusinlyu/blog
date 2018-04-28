@@ -22,4 +22,23 @@ class CommentsController extends Controller
         ]);
         return back();
     }
+
+    public function editComment(Request $request, $post_id, $comment_id) {
+        $data = $request->all();
+        $data = $request->validate([
+            'comment' => 'required|string|max:255'
+        ]);
+        Comment::where('id', $comment_id)->update([
+            'user_id' => Auth::user()->id,
+            'post_id' => $post_id,
+            'content' => $data['comment']
+        ]);
+        return back();
+    }
+
+    public function deleteComment($comment_id) {
+        $comment = Comment::find($comment_id);
+        $comment->delete();
+        return back();
+    }
 }

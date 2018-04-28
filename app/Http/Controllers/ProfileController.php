@@ -25,7 +25,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $users = User::where('id', '!=', $user->id)->get();
-        $posts = Post::where('user_id', $user->id)->with('category', 'comments', 'likes')->get();
+        $posts = Post::where('user_id', $user->id)->with('category', 'comments', 'likes')->orderBy('created_at', 'desc')->paginate(6);
         return view('profile.index', [
             'users' => $users,
             'user' => $user,
@@ -37,7 +37,7 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         $users = User::where('id', '!=', Auth::user()->id)->get();
-        $posts = Post::where('user_id', $user->id)->with('category','comments', 'likes')->get();
+        $posts = Post::where('user_id', $user->id)->with('category','comments', 'likes')->orderBy('created_at', 'desc')->paginate(6);
         return view('profile.index', [
             'user' => $user,
             'users' => $users,
@@ -62,7 +62,7 @@ class ProfileController extends Controller
 
     public function getMyPosts() {
         $users = User::where('id', '!=', Auth::user()->id)->get();
-        $posts = Post::where('user_id', Auth::user()->id)->with('category', 'user', 'comments', 'likes')->get();
+        $posts = Post::where('user_id', Auth::user()->id)->with('category', 'user', 'comments', 'likes')->orderBy('created_at', 'desc')->Paginate(6);
         return view('home.index', [
             'users' => $users,
             'posts' => $posts

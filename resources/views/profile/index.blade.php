@@ -88,8 +88,8 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="row post_row">
-                        @if($user->posts)
-                            @foreach($user->posts as $post)
+                        @if($posts)
+                            @foreach($posts as $post)
                                 <div class="col-md-4">
                                     <aside>
                                         <div class="category_cont">
@@ -145,16 +145,7 @@
                         @endif
                     </div>
                     <div class="pager_cont">
-                        <nav>
-                            <ul class="pager">
-                                <li class="previous disabled">
-                                    <a href="#"><span aria-hidden="true">&larr;</span> Older</a>
-                                </li>
-                                <li class="next">
-                                    <a href="#">Newer <span aria-hidden="true">&rarr;</span></a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{ $posts->links() }}
                     </div>
                 </div>
             </div>

@@ -19,4 +19,12 @@ class LikesController extends Controller
         }
         return back();
     }
+
+    public function removeLike($id, $post_id) {
+        $like = Like::where(['user_id' => $id, 'post_id' => $post_id])->first();
+        if ($like !== null) {
+            $like->delete();
+        }
+        return back();
+    }
 }

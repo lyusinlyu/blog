@@ -14,7 +14,7 @@
 	display: flex;
 	justify-content: center;
     align-items: center;
-    margin-top: 50px;    
+    margin-top: 50px;
 }
 .form_link a {
 	margin-left: 10px;
@@ -56,4 +56,8 @@
 	border-radius: 0;
 	padding: 0;
 	height: 30px;
+}
+textarea.form-control {
+    border: 1px solid #ccc;
+    padding: 10px;
 }

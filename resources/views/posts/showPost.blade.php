@@ -112,7 +112,10 @@
                                         <a href="{{ url('/delete/'.$post->id) }}"><button type="button" class="btn btn-default btn_delete">Delete</button></a>
                                     </div>
                                 @endif
-                                <div class="pull-right like_img"><a href="{{ url('/like/'.Auth::user()->id.'/'.$post->id) }}"><img src="{{url('images/posts_img/like.jpg')}}" width="30"></a></div>
+                                <div class="pull-right like_img">
+                                    <a href="{{ url('/like/'.Auth::user()->id.'/'.$post->id) }}"><img src="{{url('images/posts_img/like.jpg')}}" width="25" alt="LIKE"></a>
+                                    <a href="{{ url('/unlike/'.Auth::user()->id.'/'.$post->id) }}"><img src="{{url('images/posts_img/unlike.jpg')}}" width="25" alt="UNLIKE"></a>
+                                </div>
                                 <section class="add_comments">
                                     <form method="post" action="{{ url('/comment/'.$post->id) }}">
                                         @csrf
@@ -124,8 +127,8 @@
                                 </section>
                                 <hr class="horizontal">
                                 @if($comments)
-                                    @foreach($comments as $comment)
-                                        <section class="comments">
+                                    <section class="comments">
+                                        @foreach($comments as $comment)
                                             <div class="row comments_cont">
                                                 <div class="col-md-2">
                                                     <div class="comment_user">
@@ -135,12 +138,19 @@
                                                 </div>
                                                 <div class="col-md-9 comment_text">
                                                     <p>{{ $comment->content }}<span class="comment_date">{{
-                                                       $comment->created_at
+                                                    $comment->created_at
                                                     }}</span></p>
                                                 </div>
                                             </div>
-                                        </section>
-                                    @endforeach
+                                            @if( $comment->user_id === Auth::user()->id )
+                                                <div class="comment_btn_wrapper">
+                                                    <button type="button" data-toggle="modal" data-target=".comment-modal" >Edit</button>
+                                                    <a type="button" href="{{ url('/deleteComment/'.$comment->id) }}">Delete</a>
+                                                </div>
+                                            @endif
+
+                                        @endforeach
+                                    </section>
                                 @endif
                             @endif
                         </div>
