@@ -18,6 +18,9 @@ Route::get('/deleteComment/{comm_id}', 'CommentsController@deleteComment');
 Route::get('/like/{id}/{post_id}', 'LikesController@addLike');
 Route::get('/unlike/{id}/{post_id}', 'LikesController@removeLike');
 
+Route::get('/conversation/{id}', 'MessagesController@openChat');
+Route::post('/conversation/{id}', 'MessagesController@sendMessage');
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@include('errors.messages')
+    @include('errors.messages')
     <header class="header">
         <div class="user_info_cont row">
             <div class="user_bg_area col-md-10">

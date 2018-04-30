@@ -65,39 +65,41 @@
                     </div>
                 </div>
             </nav>
-            <main class="py-4">
 
-                @yield('content')
+            @yield('content')
 
-                    <div class="col-md-2">
-                        <div class="all_users_sidebar">
-                            <ul class="sidebar_users">
-                                <div class="topnav">
-                                    <div class="search-container">
-                                        <form action="" method="post">
-                                            <input type="text" placeholder="Search..." name="search" maxlength="17">
-                                            <button type="submit">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                                @if($users)
-                                    @foreach($users as $user)
-                                        <li class="user_item">
-                                            <a href="/profiles/{{ $user['id'] }}">
-                                                <div class="user">
-                                                    <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
-                                                    <p class="sidebar_user"><span class="user_name">{{ $user['name'] }}</span><span class="user_surname">{{ $user['surname'] }}</span></p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                @endif
-                            </ul>
+            <div class="col-md-2">
+                <div class="all_users_sidebar">
+                    <ul class="sidebar_users">
+                        <div class="topnav">
+                            <div class="search-container">
+                                <form action="" method="post">
+                                    <input type="text" placeholder="Search..." name="search" maxlength="17">
+                                    <button type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-            </main>
+                        @if($users)
+                            @foreach($users as $user)
+                                <li class="user_item">
+                                    <a href="#" class="user_chat_item">
+                                        <div class="user">
+                                            <img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle">
+                                            <p class="sidebar_user"><span class="user_name">{{ $user['name'] }}</span><span class="user_surname">{{ $user['surname'] }}</span></p>
+                                        </div>
+                                    </a>
+                                    <div class="chat_links_cont">
+                                        <a type="button" href="/profiles/{{ $user['id'] }}">profile</a>
+                                        <a type="button" href="/conversation/{{ $user['id'] }}">message</a>
+                                    </div>
+                                </li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </div>
+            </div>
         </div>
         <script type="text/javascript" src="{{url('js/jQuery_3.3.1.js')}}"></script>
         <script type="text/javascript" src="{{url('js/bootstrap.min.js')}}"></script>

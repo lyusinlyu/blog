@@ -49,6 +49,9 @@
 .all_users_sidebar .user img {
 	width: 35px;
 }
+.sidebar_users {
+    margin-bottom: 0;
+}
 .sidebar_users > li {
 	margin-top: 15px;
 }
@@ -74,4 +77,128 @@
 }
 .user_item > a:hover {
     text-decoration: none;
+}
+.user_item {
+    transition: all 3s;
+}
+.chat_links_cont > a {
+    background: orange;
+    color: #fff;
+    padding: 2px 5px;
+    border: 1px solid orange;
+}
+.chat_links_cont {
+    display: none;
+    margin-top: 5px;
+}
+.user_item:hover .user_chat_item + div {
+    display: block;
+}
+.section_messages {
+    height: calc(80vh - 65px);
+    background: #efefef;
+    overflow-y: scroll;
+    position: relative;
+}
+.section_write_message {
+    height: 20vh;
+    background: #fff;
+    border-top: 1px solid #ccc;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0px 0px 5px #ccc;
+}
+.section_write_message form {
+    display: flex;
+}
+.section_write_message form textarea {
+    resize: none;
+    padding: 20px;
+}
+.section_write_message .row > div {
+    padding: 0;
+}
+.section_write_message form button {
+    background: orange;
+    color: #fff;
+    border-radius: 0;
+}
+/* .section_messages .auth_user_message,
+.section_messages .other_user_message {
+     width: 100%;
+}
+.section_messages .other_user_message {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+.section_messages .auth_user_message p {
+    text-align: left;
+    display: block;
+    width: 40%;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.section_messages .other_user_message p {
+    text-align: right;
+    display: block;
+    width: 40%;
+    border: 1px solid #ccc;
+    padding: 10px;
+} */
+
+/* chat styles */
+.msgs_ul_cont {
+    width: 100%;
+}
+.msgs_ul_cont li {
+    width: 100%;
+    list-style: none;
+}
+.macro {
+    margin-top: 5px;
+    width: 85%;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+}
+.auth_user_message {
+    float: left;
+    background: white;
+    padding: 10px;
+}
+.other_user_message {
+    float: right;
+    background: whitesmoke;
+    padding: 10px;
+}
+.user_avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    float: left;
+    padding-right: 10px;
+}
+.text {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.text_l {
+    float: left;
+    padding-right: 10px;
+}
+.text_r {
+    float: right;
+    padding-left: 10px;
+}
+.text p {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: auto;
+    line-height: 15px;
+    font-size: 14px;
 }

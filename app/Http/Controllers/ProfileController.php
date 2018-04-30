@@ -60,7 +60,8 @@ class ProfileController extends Controller
         return back();
     }
 
-    public function getMyPosts() {
+    public function getMyPosts()
+    {
         $users = User::where('id', '!=', Auth::user()->id)->get();
         $posts = Post::where('user_id', Auth::user()->id)->with('category', 'user', 'comments', 'likes')->orderBy('created_at', 'desc')->Paginate(6);
         return view('home.index', [

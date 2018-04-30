@@ -151,6 +151,9 @@
 
                                         @endforeach
                                     </section>
+                                    <div class="pager_cont">
+                                        {{ $comments->links() }}
+                                    </div>
                                 @endif
                             @endif
                         </div>

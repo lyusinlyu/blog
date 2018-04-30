@@ -24,7 +24,7 @@ class PostsController extends Controller
             $user = User::where('id', $id)->first();
             if($post_id) {
                 $post = Post::where('id', $post_id)->with('category', 'comments', 'likes')->first();
-                $comments = $post->comments()->with('user')->orderBy('created_at', 'DESC')->get();
+                $comments = $post->comments()->with('user')->orderBy('created_at', 'DESC')->paginate(6);
                 $categories = Category::all();
                 return view('posts.showPost', [
                     'users' => $users,
@@ -38,7 +38,8 @@ class PostsController extends Controller
         return redirect('/');
     }
 
-    public function createPost(Request $request) {
+    public function createPost(Request $request)
+    {
         $data = $request->all();
         $data = $request->validate([
             'category' => 'required|string|max:255',
@@ -55,7 +56,8 @@ class PostsController extends Controller
         return back();
     }
 
-    public function editPost(Request $request, $id) {
+    public function editPost(Request $request, $id)
+    {
         $data = $request->all();
         $data = $request->validate([
             'category' => 'required|string|max:255',
@@ -72,7 +74,8 @@ class PostsController extends Controller
         return back();
     }
 
-    public function deletePost($id) {
+    public function deletePost($id)
+    {
         $post = Post::find($id);
         $post->delete();
         return redirect('/me');

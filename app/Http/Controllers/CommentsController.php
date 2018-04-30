@@ -10,7 +10,8 @@ use App\Models\Comment;
 
 class CommentsController extends Controller
 {
-    public function createComment(Request $request, $post_id) {
+    public function createComment(Request $request, $post_id)
+    {
         $data = $request->all();
         $data = $request->validate([
             'comment' => 'required|string|max:255'
@@ -23,7 +24,8 @@ class CommentsController extends Controller
         return back();
     }
 
-    public function editComment(Request $request, $post_id, $comment_id) {
+    public function editComment(Request $request, $post_id, $comment_id)
+    {
         $data = $request->all();
         $data = $request->validate([
             'comment' => 'required|string|max:255'
@@ -36,7 +38,8 @@ class CommentsController extends Controller
         return back();
     }
 
-    public function deleteComment($comment_id) {
+    public function deleteComment($comment_id)
+    {
         $comment = Comment::find($comment_id);
         $comment->delete();
         return back();
