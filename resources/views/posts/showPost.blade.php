@@ -48,7 +48,7 @@
                                 </div>
                             </div>
 
-                            <div class="modal fade edit-post-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                            <div class="modal fade edit-post-modal" id="edit-post-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                 <div class="modal-dialog modal-sm" role="document">
                                     <div class="modal-content">
                                         <form class="form-horizontal register_form" method="post" action="{{ url('/edit/'.$post->id) }}">
@@ -136,7 +136,7 @@
                                                         <span>{{ $comment->user['nickname'] }}</span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-9 comment_text">
+                                                <div class="col-md-9 comment_text" id="{{$comment->id}}">
                                                     <p>{{ $comment->content }}<span class="comment_date">{{
                                                     $comment->created_at
                                                     }}</span></p>
@@ -144,7 +144,7 @@
                                             </div>
                                             @if( $comment->user_id === Auth::user()->id )
                                                 <div class="comment_btn_wrapper">
-                                                    <button type="button" data-toggle="modal" data-target=".comment-modal" >Edit</button>
+                                                    <button  onclick="editComment({{$comment->id}})" >Edit</button>
                                                     <a type="button" href="{{ url('/deleteComment/'.$comment->id) }}">Delete</a>
                                                 </div>
                                             @endif
@@ -162,6 +162,18 @@
             </div>
         </div>
     </section>
+    <script>
+        window.comments = {!! json_encode($comments) !!};
+        function editComment(commId) {
+            var commCont = $('#'+commId);
+            commCont.html('');
+            for (var i = 0; i < comments['data'].length; i++) {
+                if (comments['data'][i]['id'] === commId) {
+                    commCont.append('<form method="post" action="/editComment/'+comments["data"][i]["post_id"]+'/'+commId+'">@csrf<textarea class="form-control edit_comment_area" rows="3" name="comment">'+comments['data'][i]["content"]+'</textarea><button class="edit_comment_btn" type="submit">OK</button></form>');
+                }
+            }
+        }
+    </script>
 @endsection
 
 
