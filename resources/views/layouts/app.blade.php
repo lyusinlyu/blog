@@ -26,6 +26,7 @@
         <link rel="stylesheet" href="{{url('css/form_styles.css')}}"/>
         <link rel="stylesheet" href="{{url('css/posts.css')}}"/>
         <link rel="stylesheet" href="{{url('css/style.css')}}"/>
+
     </head>
     <body>
         <div id="app">
@@ -70,15 +71,13 @@
 
             <div class="col-md-2">
                 <div class="all_users_sidebar">
-                    <ul class="sidebar_users">
+                    <ul class="sidebar_users" id="sidebar_users">
                         <div class="topnav">
                             <div class="search-container">
-                                <form action="" method="post">
-                                    <input type="text" placeholder="Search..." name="search" maxlength="17">
-                                    <button type="submit">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </form>
+                                <input type="text" placeholder="Search..." name="search" id="search" maxlength="17">
+                                <button type="submit" id="search_btn" onclick="searchUsers()">
+                                    <i class="fa fa-search"></i>
+                                </button>
                             </div>
                         </div>
                         @if($users)
@@ -104,5 +103,32 @@
         <script type="text/javascript" src="{{url('js/jQuery_3.3.1.js')}}"></script>
         <script type="text/javascript" src="{{url('js/bootstrap.min.js')}}"></script>
         <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
+        <script>
+
+            window.users = {!! json_encode($users) !!};
+
+            function searchUsers() {
+                var str = $('#search').val();
+                var foundUsers = [];
+                for (var i = 0; i < users.length; i++) {
+                    var n = users[i]['name'].startsWith(str);
+                    if (n) {
+                        foundUsers.push(users[i]['id']);
+                    }
+                }
+                $('#sidebar_users').html('');
+                var searchedUsers = [];
+                for (var i = 0; i < foundUsers.length; i++) {
+                    for (var j = 0; j < users.length; j++) {
+                        if (users[j]['id'] === foundUsers[i]) {
+                            searchedUsers.push(users[j]);
+                        }
+                    }
+                }
+                for (var i = 0; i < searchedUsers.length; i++) {
+                    $('#sidebar_users').append('<li class="user_item"><a href="#" class="user_chat_item"><div class="user"><img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle"><p class="sidebar_user"><span class="user_name">'+searchedUsers[i]["name"]+'</span><span class="user_surname">'+searchedUsers[i]["surname"]+'</span></p></div></a></li>');
+                }
+            }
+        </script>
     </body>
 </html>
