@@ -117,6 +117,7 @@
                     }
                 }
                 $('#sidebar_users').html('');
+                $('#sidebar_users').append('<div class="topnav"><div class="search-container"><input type="text" placeholder="Search..." name="search" id="search" maxlength="17"><button type="submit" id="search_btn" onclick="searchUsers()"><i class="fa fa-search"></i></button></div></div>')
                 var searchedUsers = [];
                 for (var i = 0; i < foundUsers.length; i++) {
                     for (var j = 0; j < users.length; j++) {
@@ -126,7 +127,7 @@
                     }
                 }
                 for (var i = 0; i < searchedUsers.length; i++) {
-                    $('#sidebar_users').append('<li class="user_item"><a href="#" class="user_chat_item"><div class="user"><img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle"><p class="sidebar_user"><span class="user_name">'+searchedUsers[i]["name"]+'</span><span class="user_surname">'+searchedUsers[i]["surname"]+'</span></p></div></a></li>');
+                    $('#sidebar_users').append('<li class="user_item"><a href="#" class="user_chat_item"><div class="user"><img src="{{url('images/users_chat/user2.jpg')}}" class="user_img img-circle"><p class="sidebar_user"><span class="user_name">'+searchedUsers[i]["name"]+'</span><span class="user_surname">'+searchedUsers[i]["surname"]+'</span></p></div></a><div class="chat_links_cont"><a type="button" href="/profiles/'+searchedUsers[i]["id"]+'">profile</a><a type="button" href="/conversation/'+searchedUsers[i]["id"]+'">message</a></div></li>');
                 }
             }
         </script>
