@@ -124,6 +124,11 @@
 .post_row .create_btn {
     margin-top: 30px;
 }
+.like_btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
 .like_img {
     margin: 10px 0 10px 10px;
     clear: both;
@@ -131,7 +136,7 @@
     align-items: flex-end;
 }
 .like_img img {
-    cursor: pointer;
+
     margin-left: 10px;
 }
 .add_comments {
@@ -209,19 +214,19 @@
     margin-bottom: 20px;
     padding-right: 16px;
 }
-.comment_btn_wrapper > a,
-.comment_btn_wrapper > button {
+.comment_btn_wrapper  a,
+.comment_btn_wrapper  button {
     padding: 0 10px;
     text-decoration: none;
     background: #fff;
     -webkit-appearance: none;
     margin-left: 2px;
 }
-.comment_btn_wrapper > button {
+.comment_btn_wrapper  button {
     color: #9dc132;
     border: 1px solid #9dc132;
 }
-.comment_btn_wrapper > a {
+.comment_btn_wrapper  .comm_edit_btn {
     color: #e87145;
     border: 1px solid #e87145;
 }

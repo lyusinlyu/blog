@@ -33,7 +33,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function showUserProfile($id)
+    public function show($id)
     {
         $user = User::find($id);
         $users = User::where('id', '!=', Auth::user()->id)->get();
@@ -58,15 +58,5 @@ class ProfileController extends Controller
         ]);
         $user->update($data);
         return back();
-    }
-
-    public function getMyPosts()
-    {
-        $users = User::where('id', '!=', Auth::user()->id)->get();
-        $posts = Post::where('user_id', Auth::user()->id)->with('category', 'user', 'comments', 'likes')->orderBy('created_at', 'desc')->Paginate(6);
-        return view('home.index', [
-            'users' => $users,
-            'posts' => $posts
-        ]);
     }
 }

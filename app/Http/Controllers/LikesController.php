@@ -14,21 +14,21 @@ class LikesController extends Controller
         $this->middleware('auth');
     }
 
-    public function addLike($id, $post_id)
+    public function like($post_id)
     {
-        $result = Like::where(['user_id' => $id, 'post_id' => $post_id])->first();
+        $result = Like::where('post_id', $post_id)->first();
         if ($result === null) {
             Like::create([
-            'user_id' => $id,
+            'user_id' => Auth::user()->id,
             'post_id' => $post_id
         ]);
         }
         return back();
     }
 
-    public function removeLike($id, $post_id)
+    public function unlike($post_id)
     {
-        $like = Like::where(['user_id' => $id, 'post_id' => $post_id])->first();
+        $like = Like::where('post_id', $post_id)->first();
         if ($like !== null) {
             $like->delete();
         }

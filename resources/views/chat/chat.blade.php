@@ -41,7 +41,7 @@
     <section class="section_write_message">
         <div class="row">
             <div class="col-md-10">
-                <form method="post" action="{{ url('/conversation/'.$to_user_id) }}">
+                <form method="post" action="{{ url('/conversations/'.$to_user_id) }}">
                     @csrf
                     <textarea class="form-control" rows="5" name="content" placeholder="Write Something..."></textarea>
                     <button type="submit" class="btn create_post_btn pull-right">SEND</button>

@@ -24,7 +24,7 @@
                                                 <h3>{{ $post->title }}</h3>
                                                 <div>{{ $post->content }}</div>
                                             </div>
-                                            <a href="/post/{{ $post->user_id }}/{{ $post->id }}" class="show_more">Show More<span class="fa fa-long-arrow-right"></span></a>
+                                            <a href="/posts/{{ $post->id }}" class="show_more">Show More<span class="fa fa-long-arrow-right"></span></a>
                                         </div>
                                         <div class="content-footer">
                                             <img class="user-small-img" src="{{url('images/users_chat/user2.jpg')}}">

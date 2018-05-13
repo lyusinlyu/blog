@@ -18,7 +18,7 @@ class MessagesController extends Controller
         $this->middleware('auth');
     }
 
-    public function openChat($id)
+    public function show($id)
     {
         $users = User::where('id', '!=', Auth::user()->id)->get();
         $ids = [Auth::user()->id, $id];
@@ -31,7 +31,7 @@ class MessagesController extends Controller
         ]);
 
     }
-    public function sendMessage(Request $request, $id)
+    public function store(Request $request, $id)
     {
         $data = $request->all();
         $ids = [Auth::user()->id, $id];

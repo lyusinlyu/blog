@@ -22,12 +22,21 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function showPost($id, $post_id)
+    public function index() {
+        $users = User::where('id', '!=', Auth::user()->id)->get();
+        $posts = Post::where('user_id', Auth::user()->id)->with('category', 'user', 'comments', 'likes')->orderBy('created_at', 'desc')->Paginate(6);
+        return view('home.index', [
+            'users' => $users,
+            'posts' => $posts
+        ]);
+    }
+
+    public function show($post_id)
     {
         $users = User::where('id', '!=', Auth::user()->id)->get();
-        $user = User::where('id', $id)->first();
         if($post_id) {
             $post = Post::where('id', $post_id)->with('category', 'comments', 'likes')->first();
+            $user = User::where('id', $post->user_id)->first();
             $comments = $post->comments()->with('user')->orderBy('created_at', 'DESC')->paginate(6);
             $categories = Category::all();
             return view('posts.showPost', [
@@ -40,7 +49,7 @@ class PostsController extends Controller
         }
     }
 
-    public function createPost(Request $request)
+    public function store(Request $request)
     {
         $data = $request->all();
         $data = $request->validate([
@@ -58,7 +67,7 @@ class PostsController extends Controller
         return back();
     }
 
-    public function editPost(Request $request, $id)
+    public function update(Request $request, $post_id)
     {
         $data = $request->all();
         $data = $request->validate([
@@ -67,7 +76,7 @@ class PostsController extends Controller
             'content' => 'required|string|max:255'
         ]);
         $category = Category::where('title', $data['category'])->first();
-        Post::where('id', $id)->update([
+        Post::where('id', $post_id)->update([
             'user_id' => Auth::user()->id,
             'category_id' => $category->id,
             'title' => $data['title'],
@@ -76,10 +85,10 @@ class PostsController extends Controller
         return back();
     }
 
-    public function deletePost($id)
+    public function destroy($post_id)
     {
-        $post = Post::find($id);
+        $post = Post::find($post_id);
         $post->delete();
-        return redirect('/me');
+        return redirect('/');
     }
 }

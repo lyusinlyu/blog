@@ -13,7 +13,7 @@
                             <div class="modal fade post-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                 <div class="modal-dialog modal-sm" role="document">
                                     <div class="modal-content">
-                                        <form class="form-horizontal register_form" method="post" action="{{ url('/create') }}">
+                                        <form class="form-horizontal register_form" method="post" action="{{ url('/posts') }}">
                                             @csrf
                                             @if($categories)
                                                 <div class="form-group">
@@ -51,7 +51,8 @@
                             <div class="modal fade edit-post-modal" id="edit-post-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                 <div class="modal-dialog modal-sm" role="document">
                                     <div class="modal-content">
-                                        <form class="form-horizontal register_form" method="post" action="{{ url('/edit/'.$post->id) }}">
+                                        <form class="form-horizontal register_form" method="post" action="{{ url('/posts/'.$post->id) }}">
+                                            <input name="_method" type="hidden" value="PUT">
                                             @csrf
                                             @if($categories)
                                                 <div class="form-group">
@@ -107,17 +108,29 @@
                                     </div>
                                 </aside>
                                 @if($user->id === Auth::id())
+
                                     <div class="btn-group edit_delete_btn_group pull-right" role="group">
-                                        <button type="button" class="btn btn-default btn_edit" data-toggle="modal" data-target=".edit-post-modal">Edit</button>
-                                        <a href="{{ url('/delete/'.$post->id) }}"><button type="button" class="btn btn-default btn_delete">Delete</button></a>
+                                        <button type="button" class="btn btn-default btn_edit" data-toggle="modal" data-target="#edit-post-modal">Edit</button>
+                                        <form action="{{ url('/posts/'.$post->id) }}" method="post">
+                                            <input type="hidden" name="_method" value="delete" />
+                                            @csrf
+                                            <button type="submit" class="btn btn-default btn_delete pull-right">Delete</button>
+                                        </form>
                                     </div>
                                 @endif
                                 <div class="pull-right like_img">
-                                    <a href="{{ url('/like/'.Auth::user()->id.'/'.$post->id) }}"><img src="{{url('images/posts_img/like.jpg')}}" width="25" alt="LIKE"></a>
-                                    <a href="{{ url('/unlike/'.Auth::user()->id.'/'.$post->id) }}"><img src="{{url('images/posts_img/unlike.jpg')}}" width="25" alt="UNLIKE"></a>
+                                    <form action="{{ url('/posts/'.$post->id.'/likes') }}" method="post">
+                                       @csrf
+                                       <button type="submit" class="like_btn"><img src="{{url('images/posts_img/like.jpg')}}" width="25" alt="LIKE"></button>
+                                    </form>
+                                    <form action="{{ url('/posts/'.$post->id.'/likes') }}" method="post">
+                                        <input type="hidden" name="_method" value="delete" />
+                                        @csrf
+                                        <button type="submit" class="like_btn"><img src="{{url('images/posts_img/unlike.jpg')}}" width="25" alt="UNLIKE"></button>
+                                    </form>
                                 </div>
                                 <section class="add_comments">
-                                    <form method="post" action="{{ url('/comment/'.$post->id) }}">
+                                    <form method="post" action="{{ url('posts/'.$post->id.'/comments') }}">
                                         @csrf
                                         <div class="form-group">
                                             <textarea class="form-control" rows="5" name="comment" placeholder="Add Your Comment"></textarea>
@@ -144,8 +157,12 @@
                                             </div>
                                             @if( $comment->user_id === Auth::user()->id )
                                                 <div class="comment_btn_wrapper">
-                                                    <button  onclick="editComment({{$comment->id}})" >Edit</button>
-                                                    <a type="button" href="{{ url('/deleteComment/'.$comment->id) }}">Delete</a>
+                                                    <button  onclick="editComment({{$comment->id}})" class="comm_edit_btn">Edit</button>
+                                                    <form action="{{ url('/posts/'.$comment->post_id.'/comments/'.$comment->id) }}" method="post">
+                                                        <input type="hidden" name="_method" value="delete" />
+                                                        @csrf
+                                                        <button type="submit">Delete</button>
+                                                    </form>
                                                 </div>
                                             @endif
 
@@ -169,7 +186,7 @@
             commCont.html('');
             for (var i = 0; i < comments['data'].length; i++) {
                 if (comments['data'][i]['id'] === commId) {
-                    commCont.append('<form method="post" action="/editComment/'+comments["data"][i]["post_id"]+'/'+commId+'">@csrf<textarea class="form-control edit_comment_area" rows="3" name="comment">'+comments['data'][i]["content"]+'</textarea><button class="edit_comment_btn" type="submit">OK</button></form>');
+                    commCont.append('<form method="post" action="/posts/'+comments["data"][i]["post_id"]+'/comments/'+commId+'"><input type="hidden" name="_method" value="put" />@csrf<textarea class="form-control edit_comment_area" rows="3" name="comment">'+comments['data'][i]["content"]+'</textarea><button class="edit_comment_btn" type="submit">OK</button></form>');
                 }
             }
         }

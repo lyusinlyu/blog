@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Comment;
 
-class CommentsController extends Controller
+class PostCommentsController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function createComment(Request $request, $post_id)
+    public function store(Request $request, $post_id)
     {
         $data = $request->all();
         $data = $request->validate([
@@ -29,7 +29,7 @@ class CommentsController extends Controller
         return back();
     }
 
-    public function editComment(Request $request, $post_id, $comment_id)
+    public function update(Request $request, $post_id, $comment_id)
     {
         $data = $request->all();
         $data = $request->validate([
@@ -43,7 +43,7 @@ class CommentsController extends Controller
         return back();
     }
 
-    public function deleteComment($comment_id)
+    public function destroy($post_id, $comment_id)
     {
         $comment = Comment::find($comment_id);
         $comment->delete();

@@ -14,7 +14,6 @@ class UsersController extends Controller
 
     public function show(Request $request, $id)
     {
-
         $allowed_identificators = ['id', 'email'];
         $identificator = $request->query('identificator', 'id');
         if(!in_array($identificator, $allowed_identificators)) {

@@ -2,30 +2,34 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/posts', 'ProfileController@getMyPosts');
-Route::get('/me', 'ProfileController@showAuthUserProfile');
-Route::post('/me', 'ProfileController@updateAuthUserProfile');
-Route::get('/profiles/{id}', 'ProfileController@showUserProfile');
+Route::get('posts', 'PostsController@index');
+Route::post('posts', 'PostsController@store');
+Route::get('posts/{post_id}', 'PostsController@show');
+Route::delete('posts/{post_id}', 'PostsController@destroy');
+Route::put('posts/{post_id}', 'PostsController@update');
 
-Route::get('post/{user_id}/{id}', 'PostsController@showPost');
-Route::post('/create', 'PostsController@createPost');
-Route::post('/edit/{id}', 'PostsController@editPost');
-Route::get('/delete/{id}', 'PostsController@deletePost');
+Route::post('posts/{post_id}/comments', 'PostCommentsController@store');
+Route::put('posts/{post_id}/comments/{comment_id}', 'PostCommentsController@update');
+Route::delete('posts/{post_id}/comments/{comment_id}', 'PostCommentsController@destroy');
 
-Route::post('/comment/{post_id}', 'CommentsController@createComment');
-Route::post('/editComment/{post_id}/{comm_id}', 'CommentsController@editComment');
-Route::get('/deleteComment/{comm_id}', 'CommentsController@deleteComment');
-Route::get('/like/{id}/{post_id}', 'LikesController@addLike');
-Route::get('/unlike/{id}/{post_id}', 'LikesController@removeLike');
+Route::post('posts/{post_id}/likes', 'LikesController@like');
+Route::delete('posts/{post_id}/likes', 'LikesController@unlike');
 
-Route::get('/conversation/{id}', 'MessagesController@openChat');
-Route::post('/conversation/{id}', 'MessagesController@sendMessage');
+Route::group(['prefix' => 'profiles'], function(){
+    Route::get('me', 'ProfileController@showAuthUserProfile');
+    Route::post('me', 'ProfileController@updateAuthUserProfile');
+    Route::get('{id}', 'ProfileController@show');
+});
+
+Route::get('/conversations/{id}', 'MessagesController@show');
+Route::post('/conversations/{id}', 'MessagesController@store');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+
 
 

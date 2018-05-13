@@ -49,7 +49,7 @@
                                         {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ url('/me') }}">{{ __('My Profile') }}</a>
+                                        <a class="dropdown-item" href="{{ url('profiles/me') }}">{{ __('My Profile') }}</a>
                                         <a class="dropdown-item" href="/posts">{{ __('My Posts') }}</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -91,7 +91,7 @@
                                     </a>
                                     <div class="chat_links_cont">
                                         <a type="button" href="/profiles/{{ $user['id'] }}">profile</a>
-                                        <a type="button" href="/conversation/{{ $user['id'] }}">message</a>
+                                        <a type="button" href="/conversations/{{ $user['id'] }}">message</a>
                                     </div>
                                 </li>
                             @endforeach
