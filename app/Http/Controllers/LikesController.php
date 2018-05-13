@@ -9,6 +9,11 @@ use App\Models\Like;
 
 class LikesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function addLike($id, $post_id)
     {
         $result = Like::where(['user_id' => $id, 'post_id' => $post_id])->first();

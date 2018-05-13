@@ -9,11 +9,6 @@ class UsersController extends Controller
 {
     public function index()
     {
-        // $users = User::all();
-        // if($users) {
-        //     dd($users);
-        // }
-        
         return view('users.index');
     }
 

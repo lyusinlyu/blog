@@ -32,13 +32,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()) {
-            $users = User::where('id', '!=', Auth::user()->id)->get();
-            $posts = Post::with('category', 'user')->orderBy('created_at', 'desc')->paginate(6);
-            return view('home.index', [
-                'users' => $users,
-                'posts' => $posts
-            ]);
-        }
+        $users = User::where('id', '!=', Auth::user()->id)->get();
+        $posts = Post::with('category', 'user')->orderBy('created_at', 'desc')->paginate(6);
+        return view('home.index', [
+            'users' => $users,
+            'posts' => $posts
+        ]);
     }
 }

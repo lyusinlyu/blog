@@ -13,20 +13,23 @@ use App\Models\{
 
 class MessagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function openChat($id)
     {
-        if (Auth::user()) {
-            $users = User::where('id', '!=', Auth::user()->id)->get();
-            $ids = [Auth::user()->id, $id];
-            $conversation_id = $ids[0] < $ids[1]?$ids[0].$ids[1]:$ids[1].$ids[0];
-            $messages = Message::where('conversation_id', $conversation_id)->orderBy('created_at', 'asc')->get();
-            return view('chat.chat', [
-                'users' => $users,
-                'messages' => $messages,
-                'to_user_id' => $id
-            ]);
-        }
-        return redirect('/');
+        $users = User::where('id', '!=', Auth::user()->id)->get();
+        $ids = [Auth::user()->id, $id];
+        $conversation_id = $ids[0] < $ids[1]?$ids[0].$ids[1]:$ids[1].$ids[0];
+        $messages = Message::where('conversation_id', $conversation_id)->orderBy('created_at', 'asc')->get();
+        return view('chat.chat', [
+            'users' => $users,
+            'messages' => $messages,
+            'to_user_id' => $id
+        ]);
+
     }
     public function sendMessage(Request $request, $id)
     {

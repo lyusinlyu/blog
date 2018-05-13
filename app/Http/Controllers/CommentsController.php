@@ -10,6 +10,11 @@ use App\Models\Comment;
 
 class CommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function createComment(Request $request, $post_id)
     {
         $data = $request->all();
